@@ -1,0 +1,481 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище bank_systemModel" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bank_account">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="User_login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sum" Type="int" />
+        </EntityType>
+        <EntityType Name="bank_deposit">
+          <Key>
+            <PropertyRef Name="Account_number" />
+          </Key>
+          <Property Name="Account_number" Type="int" Nullable="false" />
+          <Property Name="Deposite_type_id" Type="int" Nullable="false" />
+          <Property Name="Opening_date" Type="date" Nullable="false" />
+          <Property Name="Expiry_date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="credit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Credit_type_id" Type="int" Nullable="false" />
+          <Property Name="Opening_date" Type="date" Nullable="false" />
+          <Property Name="Expiry_date" Type="date" Nullable="false" />
+          <Property Name="Paid_sum" Type="int" />
+        </EntityType>
+        <EntityType Name="credit_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Interest_rate" Type="int" Nullable="false" />
+          <Property Name="Sum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="data_of_user">
+          <Key>
+            <PropertyRef Name="User_login" />
+          </Key>
+          <Property Name="User_login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Passport_series" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Passport_number" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="deposite_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Term" Type="int" Nullable="false" />
+          <Property Name="Interest_rate" Type="int" Nullable="false" />
+          <Property Name="Capitalization" Type="bool" Nullable="false" />
+          <Property Name="Early_closure" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Admin" Type="bool" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_account_number">
+          <End Role="bank_account" Type="Self.bank_account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bank_deposit" Type="Self.bank_deposit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="bank_account">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="bank_deposit">
+              <PropertyRef Name="Account_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_credit_type_id">
+          <End Role="credit_type" Type="Self.credit_type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="Self.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="credit_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="Credit_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_deposite_type_id">
+          <End Role="deposite_type" Type="Self.deposite_type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bank_deposit" Type="Self.bank_deposit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deposite_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bank_deposit">
+              <PropertyRef Name="Deposite_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_us_log">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bank_account" Type="Self.bank_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="bank_account">
+              <PropertyRef Name="User_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_us_login">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="Self.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="User_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_login">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="data_of_user" Type="Self.data_of_user" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="data_of_user">
+              <PropertyRef Name="User_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище bank_systemModelContainer">
+          <EntitySet Name="bank_account" EntityType="Self.bank_account" Schema="bank_system" store:Type="Tables" />
+          <EntitySet Name="bank_deposit" EntityType="Self.bank_deposit" Schema="bank_system" store:Type="Tables" />
+          <EntitySet Name="credit" EntityType="Self.credit" Schema="bank_system" store:Type="Tables" />
+          <EntitySet Name="credit_type" EntityType="Self.credit_type" Schema="bank_system" store:Type="Tables" />
+          <EntitySet Name="data_of_user" EntityType="Self.data_of_user" Schema="bank_system" store:Type="Tables" />
+          <EntitySet Name="deposite_type" EntityType="Self.deposite_type" Schema="bank_system" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="bank_system" store:Type="Tables" />
+          <AssociationSet Name="fk_account_number" Association="Self.fk_account_number">
+            <End Role="bank_account" EntitySet="bank_account" />
+            <End Role="bank_deposit" EntitySet="bank_deposit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_credit_type_id" Association="Self.fk_credit_type_id">
+            <End Role="credit_type" EntitySet="credit_type" />
+            <End Role="credit" EntitySet="credit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_deposite_type_id" Association="Self.fk_deposite_type_id">
+            <End Role="deposite_type" EntitySet="deposite_type" />
+            <End Role="bank_deposit" EntitySet="bank_deposit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_us_log" Association="Self.fk_us_log">
+            <End Role="user" EntitySet="user" />
+            <End Role="bank_account" EntitySet="bank_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_us_login" Association="Self.fk_us_login">
+            <End Role="user" EntitySet="user" />
+            <End Role="credit" EntitySet="credit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_login" Association="Self.fk_user_login">
+            <End Role="user" EntitySet="user" />
+            <End Role="data_of_user" EntitySet="data_of_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bank_systemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bank_account">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sum" Type="Int32" />
+          <NavigationProperty Name="bank_deposit" Relationship="Self.fk_account_number" FromRole="bank_account" ToRole="bank_deposit" />
+          <NavigationProperty Name="user" Relationship="Self.fk_us_log" FromRole="bank_account" ToRole="user" />
+        </EntityType>
+        <EntityType Name="bank_deposit">
+          <Key>
+            <PropertyRef Name="Account_number" />
+          </Key>
+          <Property Name="Account_number" Type="Int32" Nullable="false" />
+          <Property Name="Deposite_type_id" Type="Int32" Nullable="false" />
+          <Property Name="Opening_date" Type="DateTime" Nullable="false" />
+          <Property Name="Expiry_date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="bank_account" Relationship="Self.fk_account_number" FromRole="bank_deposit" ToRole="bank_account" />
+          <NavigationProperty Name="deposite_type" Relationship="Self.fk_deposite_type_id" FromRole="bank_deposit" ToRole="deposite_type" />
+        </EntityType>
+        <EntityType Name="credit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Credit_type_id" Type="Int32" Nullable="false" />
+          <Property Name="Opening_date" Type="DateTime" Nullable="false" />
+          <Property Name="Expiry_date" Type="DateTime" Nullable="false" />
+          <Property Name="Paid_sum" Type="Int32" />
+          <NavigationProperty Name="credit_type" Relationship="Self.fk_credit_type_id" FromRole="credit" ToRole="credit_type" />
+          <NavigationProperty Name="user" Relationship="Self.fk_us_login" FromRole="credit" ToRole="user" />
+        </EntityType>
+        <EntityType Name="credit_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Interest_rate" Type="Int32" Nullable="false" />
+          <Property Name="Sum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="credit" Relationship="Self.fk_credit_type_id" FromRole="credit_type" ToRole="credit" />
+        </EntityType>
+        <EntityType Name="data_of_user">
+          <Key>
+            <PropertyRef Name="User_login" />
+          </Key>
+          <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Passport_series" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Passport_number" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_user_login" FromRole="data_of_user" ToRole="user" />
+        </EntityType>
+        <EntityType Name="deposite_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Term" Type="Int32" Nullable="false" />
+          <Property Name="Interest_rate" Type="Int32" Nullable="false" />
+          <Property Name="Capitalization" Type="Boolean" Nullable="false" />
+          <Property Name="Early_closure" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="bank_deposit" Relationship="Self.fk_deposite_type_id" FromRole="deposite_type" ToRole="bank_deposit" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Admin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="bank_account" Relationship="Self.fk_us_log" FromRole="user" ToRole="bank_account" />
+          <NavigationProperty Name="credit" Relationship="Self.fk_us_login" FromRole="user" ToRole="credit" />
+          <NavigationProperty Name="data_of_user" Relationship="Self.fk_user_login" FromRole="user" ToRole="data_of_user" />
+        </EntityType>
+        <Association Name="fk_account_number">
+          <End Role="bank_account" Type="Self.bank_account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bank_deposit" Type="Self.bank_deposit" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="bank_account">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="bank_deposit">
+              <PropertyRef Name="Account_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_us_log">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bank_account" Type="Self.bank_account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="bank_account">
+              <PropertyRef Name="User_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_deposite_type_id">
+          <End Role="deposite_type" Type="Self.deposite_type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="bank_deposit" Type="Self.bank_deposit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="deposite_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bank_deposit">
+              <PropertyRef Name="Deposite_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_credit_type_id">
+          <End Role="credit_type" Type="Self.credit_type" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="Self.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="credit_type">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="Credit_type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_us_login">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="credit" Type="Self.credit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="credit">
+              <PropertyRef Name="User_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_user_login">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="data_of_user" Type="Self.data_of_user" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="data_of_user">
+              <PropertyRef Name="User_login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bank_systemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bank_account" EntityType="Self.bank_account" />
+          <EntitySet Name="bank_deposit" EntityType="Self.bank_deposit" />
+          <EntitySet Name="credit" EntityType="Self.credit" />
+          <EntitySet Name="credit_type" EntityType="Self.credit_type" />
+          <EntitySet Name="data_of_user" EntityType="Self.data_of_user" />
+          <EntitySet Name="deposite_type" EntityType="Self.deposite_type" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="fk_account_number" Association="Self.fk_account_number">
+            <End Role="bank_account" EntitySet="bank_account" />
+            <End Role="bank_deposit" EntitySet="bank_deposit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_us_log" Association="Self.fk_us_log">
+            <End Role="user" EntitySet="user" />
+            <End Role="bank_account" EntitySet="bank_account" />
+          </AssociationSet>
+          <AssociationSet Name="fk_deposite_type_id" Association="Self.fk_deposite_type_id">
+            <End Role="deposite_type" EntitySet="deposite_type" />
+            <End Role="bank_deposit" EntitySet="bank_deposit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_credit_type_id" Association="Self.fk_credit_type_id">
+            <End Role="credit_type" EntitySet="credit_type" />
+            <End Role="credit" EntitySet="credit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_us_login" Association="Self.fk_us_login">
+            <End Role="user" EntitySet="user" />
+            <End Role="credit" EntitySet="credit" />
+          </AssociationSet>
+          <AssociationSet Name="fk_user_login" Association="Self.fk_user_login">
+            <End Role="user" EntitySet="user" />
+            <End Role="data_of_user" EntitySet="data_of_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище bank_systemModelContainer" CdmEntityContainer="bank_systemEntities">
+          <EntitySetMapping Name="bank_account">
+            <EntityTypeMapping TypeName="bank_systemModel.bank_account">
+              <MappingFragment StoreEntitySet="bank_account">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="User_login" ColumnName="User_login" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bank_deposit">
+            <EntityTypeMapping TypeName="bank_systemModel.bank_deposit">
+              <MappingFragment StoreEntitySet="bank_deposit">
+                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+                <ScalarProperty Name="Deposite_type_id" ColumnName="Deposite_type_id" />
+                <ScalarProperty Name="Opening_date" ColumnName="Opening_date" />
+                <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="credit">
+            <EntityTypeMapping TypeName="bank_systemModel.credit">
+              <MappingFragment StoreEntitySet="credit">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="User_login" ColumnName="User_login" />
+                <ScalarProperty Name="Credit_type_id" ColumnName="Credit_type_id" />
+                <ScalarProperty Name="Opening_date" ColumnName="Opening_date" />
+                <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />
+                <ScalarProperty Name="Paid_sum" ColumnName="Paid_sum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="credit_type">
+            <EntityTypeMapping TypeName="bank_systemModel.credit_type">
+              <MappingFragment StoreEntitySet="credit_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Interest_rate" ColumnName="Interest_rate" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="data_of_user">
+            <EntityTypeMapping TypeName="bank_systemModel.data_of_user">
+              <MappingFragment StoreEntitySet="data_of_user">
+                <ScalarProperty Name="User_login" ColumnName="User_login" />
+                <ScalarProperty Name="Passport_series" ColumnName="Passport_series" />
+                <ScalarProperty Name="Passport_number" ColumnName="Passport_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deposite_type">
+            <EntityTypeMapping TypeName="bank_systemModel.deposite_type">
+              <MappingFragment StoreEntitySet="deposite_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Term" ColumnName="Term" />
+                <ScalarProperty Name="Interest_rate" ColumnName="Interest_rate" />
+                <ScalarProperty Name="Capitalization" ColumnName="Capitalization" />
+                <ScalarProperty Name="Early_closure" ColumnName="Early_closure" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="bank_systemModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
