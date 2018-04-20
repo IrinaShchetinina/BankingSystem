@@ -76,6 +76,7 @@
     <Compile Include="bank_deposit.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Connector.cs" />
     <Compile Include="credit.cs">
       <DependentUpon>DataBaseModel.tt</DependentUpon>
     </Compile>

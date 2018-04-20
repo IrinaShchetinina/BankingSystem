@@ -16,5 +16,17 @@ namespace BankingSystem
         {
             InitializeComponent();
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Connector con = new Connector();
+            con.ConnectDBContext();
+            user user = new user();
+            user.Login = "111";
+            user.Password = "111";
+            user.Admin = false;
+            con.AddUser(user);
+            List<user> users = con.GetUsersToList();
+        }
     }
 }
