@@ -59,6 +59,7 @@ namespace BankingSystem
             try
             {
                 dbContext.user.Add(user);
+                dbContext.SaveChanges();
             }
             catch(MySqlException e)
             {
