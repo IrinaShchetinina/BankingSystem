@@ -5,56 +5,57 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace BankingSystem
 {
-    class Connector
+    public class Connector
     {
 
         private static bank_systemEntities dbContext;
 
-        public void ConnectDBContext() //singletone
+        protected static void connectDBContext() //singletone
         {
             if (dbContext == null)
                 dbContext = new bank_systemEntities();
         }
 
-        public List<user> GetUsersToList()
+        protected List<user> getUsersToList()
         {
             return dbContext.user.ToList();
         }
 
-        public List<data_of_user> GetUsersDataToList()
+        protected List<data_of_user> getUsersDataToList()
         {
             return dbContext.data_of_user.ToList();
         }
 
-        public List<bank_account> GetBankAccountsToList()
+        protected List<bank_account> getBankAccountsToList()
         {
             return dbContext.bank_account.ToList();
         }
 
-        public List<bank_deposit> GetBankDepositsToList()
+        protected List<bank_deposit> getBankDepositsToList()
         {
             return dbContext.bank_deposit.ToList();
         }
 
-        public List<credit> GetCreditsToList()
+        protected List<credit> getCreditsToList()
         {
             return dbContext.credit.ToList();
         }
 
-        public List<credit_type> GetCreditTypesToList()
+        protected List<credit_type> getCreditTypesToList()
         {
             return dbContext.credit_type.ToList();
         }
 
-        public List<deposite_type> GetDepositTypesToList()
+        protected List<deposite_type> getDepositTypesToList()
         {
             return dbContext.deposite_type.ToList();
         }
 
-        public void AddUser(user user)
+        protected void addUser(user user)
         {
             try
             {
@@ -65,6 +66,48 @@ namespace BankingSystem
             {
                 MessageBox.Show(e.Message);
             }
+        }
+
+        protected void updateUser(user user) //the login is not changing
+        {
+            try
+            {
+                user foundUser = dbContext.user.Where(l => l.Login == user.Login).FirstOrDefault(); //находим по логину
+                if (foundUser != null) //если нашли
+                {
+                    //изменить юзера
+                    foundUser.Password = user.Password;
+                    foundUser.Admin = user.Admin;
+                    // Обновить данные в БД с помощью Entity Framework
+                    try
+                    {
+                        dbContext.Entry<user>(foundUser).State = EntityState.Modified;
+                        dbContext.SaveChanges();
+                    }
+                    catch (MySqlException e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                }
+                dbContext.SaveChanges();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        protected void deleteUser(user user)
+        {
+            //try
+            //{
+                dbContext.user.Remove(user);
+                dbContext.SaveChanges();
+            //}
+            //catch (MySqlException e)
+            //{
+                //MessageBox.Show(e.Message);
+            //}
         }
     }
 }

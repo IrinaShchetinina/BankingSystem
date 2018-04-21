@@ -19,14 +19,27 @@ namespace BankingSystem
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Connector con = new Connector();
-            con.ConnectDBContext();
-            user user = new user();
-            user.Login = "111";
-            user.Password = "111";
-            user.Admin = false;
-            con.AddUser(user);
-            List<user> users = con.GetUsersToList();
+            //UserContext uc = UserContext.GetUserContext();
+            //user user = uc.GetUsersToList().First();
+            //user.Password = "000";
+            //uc.UpdateUser(user);
+            //List<user> users = uc.GetUsersToList();
+            //uc.DeleteUser(user);
+            //users = uc.GetUsersToList();
+            //user user = new user();
+            //user.Login = "112";
+            //user.Password = "112";
+            //user.Admin = false;
+            //uc.AddUser(user);
+            //users = uc.GetUsersToList();
+            //uc.DeleteUser(user);
+            //users = uc.GetUsersToList();
+            //uc.AddUser(user);
+            //users = uc.GetUsersToList();
+            //user.Admin = true;
+            //user.Password = "222";
+            //uc.UpdateUser(user);
+            //users = uc.GetUsersToList();
         }
     }
 }
