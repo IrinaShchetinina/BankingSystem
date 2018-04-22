@@ -68,11 +68,16 @@ namespace BankingSystem
             }
         }
 
+        protected user findUserbyLogin(string userLogin)
+        {
+            return dbContext.user.Where(l => l.Login == userLogin).FirstOrDefault(); //находим по логину или возвращаем null
+        }
+
         protected void updateUser(user user) //the login is not changing
         {
             try
             {
-                user foundUser = dbContext.user.Where(l => l.Login == user.Login).FirstOrDefault(); //находим по логину
+                user foundUser = findUserbyLogin(user.Login);
                 if (foundUser != null) //если нашли
                 {
                     //изменить юзера
@@ -99,15 +104,15 @@ namespace BankingSystem
 
         protected void deleteUser(user user)
         {
-            //try
-            //{
+            try
+            {
                 dbContext.user.Remove(user);
                 dbContext.SaveChanges();
-            //}
-            //catch (MySqlException e)
-            //{
-                //MessageBox.Show(e.Message);
-            //}
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
         }
     }
 }

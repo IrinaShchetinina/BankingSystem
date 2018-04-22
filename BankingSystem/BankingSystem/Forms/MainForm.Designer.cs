@@ -1,4 +1,4 @@
-﻿namespace BankingSystem
+﻿namespace BankingSystem.Forms
 {
     partial class MainForm
     {

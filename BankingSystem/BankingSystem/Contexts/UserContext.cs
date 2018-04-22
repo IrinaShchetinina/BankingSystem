@@ -62,6 +62,11 @@ namespace BankingSystem
             addUser(user);
         }
 
+        public user FindUserByLogin(string userLogin)
+        {
+            return findUserbyLogin(userLogin);
+        }
+
         public void UpdateUser(user user) //the login is not changing
         {
             updateUser(user);
