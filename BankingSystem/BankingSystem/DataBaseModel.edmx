@@ -48,6 +48,9 @@
           <Property Name="User_login" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Passport_series" Type="varchar" MaxLength="4" Nullable="false" />
           <Property Name="Passport_number" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Patronymic" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="deposite_type">
           <Key>
@@ -239,6 +242,9 @@
           <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Passport_series" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Passport_number" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="user" Relationship="Self.fk_user_login" FromRole="data_of_user" ToRole="user" />
         </EntityType>
         <EntityType Name="deposite_type">
@@ -432,6 +438,9 @@
                 <ScalarProperty Name="User_login" ColumnName="User_login" />
                 <ScalarProperty Name="Passport_series" ColumnName="Passport_series" />
                 <ScalarProperty Name="Passport_number" ColumnName="Passport_number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

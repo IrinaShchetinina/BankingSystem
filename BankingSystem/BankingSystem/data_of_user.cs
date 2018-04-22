@@ -17,6 +17,9 @@ namespace BankingSystem
         public string User_login { get; set; }
         public string Passport_series { get; set; }
         public string Passport_number { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Patronymic { get; set; }
     
         public virtual user user { get; set; }
     }
