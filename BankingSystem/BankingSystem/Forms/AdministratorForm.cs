@@ -25,11 +25,50 @@ namespace BankingSystem.Forms
 
         private void AdministratorForm_Load(object sender, EventArgs e)
         {
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelSurname"].Text = user.data_of_user.Surname;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelName"].Text = user.data_of_user.Name;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelPatronymic"].Text = user.data_of_user.Patronymic;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelPassSer"].Text = user.data_of_user.Passport_series;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelPassNum"].Text = user.data_of_user.Passport_number;
+            labelSurname.Text = user.data_of_user.Surname;
+            labelName.Text = user.data_of_user.Name;
+            labelPatronymic.Text = user.data_of_user.Patronymic;
+            labelPassSer.Text = user.data_of_user.Passport_series;
+            labelPassNum.Text = user.data_of_user.Passport_number;
+        }
+
+        private void buttonOk_Click(object sender, EventArgs e)
+        {
+            user createdUser = new user();
+            data_of_user userData = new data_of_user();
+
+            createdUser.Login = textBoxLogin.Text.Trim();
+            userData.User_login = textBoxLogin.Text.Trim();
+            createdUser.data_of_user = userData;
+            userData.user = createdUser;
+            createdUser.Admin = Convert.ToBoolean(checkBoxAdmin.CheckState);
+            userData.Surname = textBoxSurname.Text.Trim();
+            userData.Name = textBoxName.Text.Trim();
+            userData.Patronymic = textBoxPatronymic.Text.Trim();
+            userData.Passport_series = textBoxPassSer.Text.Trim();
+            userData.Passport_number = textBoxPassNum.Text.Trim();
+            
+
+            UserCreatingForm creatingForm = new UserCreatingForm(createdUser);
+
+            if(creatingForm.ShowDialog() == DialogResult.OK)
+            {
+                PasswordForm passForm = new PasswordForm(createdUser.Login);
+                if(passForm.ShowDialog() == DialogResult.OK)
+                {
+                    string pass = passForm.textBoxPassword.Text.Trim();
+                    if (pass != null)
+                    {
+                        createdUser.Password = pass;
+                        if(userContext.AddUser(createdUser))
+                            MessageBox.Show("User added!");
+                    }
+                    else
+                        MessageBox.Show("A password is not entered!!! User addition canceled!");
+                }
+                else
+                    MessageBox.Show("User addition canceled!");
+            }
         }
     }
 }

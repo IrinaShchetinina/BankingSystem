@@ -25,11 +25,11 @@ namespace BankingSystem.Forms
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelSurname"].Text = user.data_of_user.Surname;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelName"].Text = user.data_of_user.Name;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelPatronymic"].Text = user.data_of_user.Patronymic;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelPassSer"].Text = user.data_of_user.Passport_series;
-            tabControl.TabPages["tabPagePersonalData"].Controls["labelPassNum"].Text = user.data_of_user.Passport_number;
+            labelSurname.Text = user.data_of_user.Surname;
+            labelName.Text = user.data_of_user.Name;
+            labelPatronymic.Text = user.data_of_user.Patronymic;
+            labelPassSer.Text = user.data_of_user.Passport_series;
+            labelPassNum.Text = user.data_of_user.Passport_number;
         }
     }
 }

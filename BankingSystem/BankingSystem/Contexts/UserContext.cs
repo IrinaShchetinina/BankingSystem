@@ -57,9 +57,9 @@ namespace BankingSystem
             return getDepositTypesToList();
         }
 
-        public void AddUser(user user)
+        public bool AddUser(user user)
         {
-            addUser(user);
+            return addUser(user);
         }
 
         public user FindUserByLogin(string userLogin)

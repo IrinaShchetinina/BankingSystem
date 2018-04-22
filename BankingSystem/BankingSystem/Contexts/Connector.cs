@@ -55,23 +55,26 @@ namespace BankingSystem
             return dbContext.deposite_type.ToList();
         }
 
-        protected void addUser(user user)
+        protected bool addUser(user user)
         {
+            bool added = true;
             user foundUser = findUserByLogin(user.Login);
             if(foundUser!=null)
             {
                 MessageBox.Show("This login already exist!");
-                return;
+                added = false;
             }
             try
             {
                 dbContext.user.Add(user);
                 dbContext.SaveChanges();
             }
-            catch(MySqlException e)
+            catch(Exception e)
             {
                 MessageBox.Show(e.Message);
+                added = false;
             }
+            return added;
         }
 
         protected user findUserByLogin(string userLogin)
@@ -99,14 +102,14 @@ namespace BankingSystem
                         dbContext.Entry<user>(foundUser).State = EntityState.Modified;
                         dbContext.SaveChanges();
                     }
-                    catch (MySqlException e)
+                    catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                     }
                 }
                 dbContext.SaveChanges();
             }
-            catch (MySqlException e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -119,7 +122,7 @@ namespace BankingSystem
                 dbContext.user.Remove(user);
                 dbContext.SaveChanges();
             }
-            catch (MySqlException e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
