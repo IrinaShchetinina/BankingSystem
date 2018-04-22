@@ -30,6 +30,17 @@ namespace BankingSystem.Forms
             labelPatronymic.Text = user.data_of_user.Patronymic;
             labelPassSer.Text = user.data_of_user.Passport_series;
             labelPassNum.Text = user.data_of_user.Passport_number;
+
+            user.bank_account = userContext.GetBankAccountsToList(user.Login);
+            dataGridViewAccounts.DataSource = user.bank_account;
+            dataGridViewAccounts.Columns[1].Visible = false;
+            dataGridViewAccounts.Columns[3].Visible = false;
+            dataGridViewAccounts.Columns[4].Visible = false;
+
+            dataGridViewDeposits.DataSource = userContext.GetBankDepositsToList(user.Login);
+            dataGridViewDeposits.Columns[1].Visible = false;
+            dataGridViewDeposits.Columns[4].Visible = false;
+            dataGridViewDeposits.Columns[5].Visible = false;
         }
     }
 }

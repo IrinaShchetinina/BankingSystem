@@ -32,14 +32,14 @@ namespace BankingSystem
             return getUsersDataToList();
         }
 
-        public List<bank_account> GetBankAccountsToList()
+        public List<bank_account> GetBankAccountsToList(string userLogin)
         {
-            return getBankAccountsToList(); ;
+            return getBankAccountsToList(userLogin); ;
         }
 
-        public List<bank_deposit> GetBankDepositsToList()
+        public List<bank_deposit> GetBankDepositsToList(string userLogin)
         {
-            return getBankDepositsToList();
+            return getBankDepositsToList(userLogin);
         }
 
         public List<credit> GetCreditsToList()
