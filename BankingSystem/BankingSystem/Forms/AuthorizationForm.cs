@@ -23,6 +23,7 @@ namespace BankingSystem.Forms
         private void AuthorizationForm_Load(object sender, EventArgs e)
         {
             userContext = UserContext.GetUserContext();
+            this.FormClosed += exit;
         }
 
         private void AuthorizeButton_Click(object sender, EventArgs e)
@@ -35,14 +36,16 @@ namespace BankingSystem.Forms
                     if (user.Admin)
                     {
                         AdministratorForm adminForm = new AdministratorForm(userContext, user);
+                        adminForm.FormClosed += checkedFormClosed;
                         adminForm.Show();
-                        this.Close();
+                        this.Hide();
                     }
                     else
                     {
                         UserForm userForm = new UserForm(userContext, user);
+                        userForm.FormClosed += checkedFormClosed;
                         userForm.Show();
-                        this.Close();
+                        this.Hide();
                     }
                 }
                 else
@@ -50,6 +53,16 @@ namespace BankingSystem.Forms
             }
             else
                 MessageBox.Show("Incorrect login!!!");
+        }
+
+        private void checkedFormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+        }
+
+        private void exit(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

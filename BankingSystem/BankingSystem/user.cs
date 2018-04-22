@@ -30,5 +30,6 @@ namespace BankingSystem
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<credit> credit { get; set; }
         public virtual data_of_user data_of_user { get; set; }
+
     }
 }

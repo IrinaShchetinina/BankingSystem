@@ -64,7 +64,12 @@ namespace BankingSystem
 
         public user FindUserByLogin(string userLogin)
         {
-            return findUserbyLogin(userLogin);
+            return findUserByLogin(userLogin);
+        }
+
+        public data_of_user FindUserDataByLogin(string userLogin)
+        {
+            return findUserDataByLogin(userLogin);
         }
 
         public void UpdateUser(user user) //the login is not changing

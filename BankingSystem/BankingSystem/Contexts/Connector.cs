@@ -57,6 +57,12 @@ namespace BankingSystem
 
         protected void addUser(user user)
         {
+            user foundUser = findUserByLogin(user.Login);
+            if(foundUser!=null)
+            {
+                MessageBox.Show("This login already exist!");
+                return;
+            }
             try
             {
                 dbContext.user.Add(user);
@@ -68,16 +74,20 @@ namespace BankingSystem
             }
         }
 
-        protected user findUserbyLogin(string userLogin)
+        protected user findUserByLogin(string userLogin)
         {
             return dbContext.user.Where(l => l.Login == userLogin).FirstOrDefault(); //находим по логину или возвращаем null
+        }
+        protected data_of_user findUserDataByLogin(string userLogin)
+        {
+            return dbContext.data_of_user.Where(l => l.User_login == userLogin).FirstOrDefault(); //находим по логину или возвращаем null
         }
 
         protected void updateUser(user user) //the login is not changing
         {
             try
             {
-                user foundUser = findUserbyLogin(user.Login);
+                user foundUser = findUserByLogin(user.Login);
                 if (foundUser != null) //если нашли
                 {
                     //изменить юзера
