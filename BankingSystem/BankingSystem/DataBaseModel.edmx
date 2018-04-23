@@ -7,17 +7,18 @@
       <Schema Namespace="Хранилище bank_systemModel" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="bank_account">
           <Key>
-            <PropertyRef Name="Number" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Number" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="mediumtext" Nullable="false" />
           <Property Name="User_login" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Sum" Type="int" />
         </EntityType>
         <EntityType Name="bank_deposit">
           <Key>
-            <PropertyRef Name="Account_number" />
+            <PropertyRef Name="Account_id" />
           </Key>
-          <Property Name="Account_number" Type="int" Nullable="false" />
+          <Property Name="Account_id" Type="int" Nullable="false" />
           <Property Name="Deposite_type_id" Type="int" Nullable="false" />
           <Property Name="Opening_date" Type="date" Nullable="false" />
           <Property Name="Expiry_date" Type="date" Nullable="false" />
@@ -70,17 +71,17 @@
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Admin" Type="bool" Nullable="false" />
         </EntityType>
-        <Association Name="fk_account_number">
+        <Association Name="fk_account_id">
           <End Role="bank_account" Type="Self.bank_account" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="bank_deposit" Type="Self.bank_deposit" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="bank_account">
-              <PropertyRef Name="Number" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="bank_deposit">
-              <PropertyRef Name="Account_number" />
+              <PropertyRef Name="Account_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -162,7 +163,7 @@
           <EntitySet Name="data_of_user" EntityType="Self.data_of_user" Schema="bank_system" store:Type="Tables" />
           <EntitySet Name="deposite_type" EntityType="Self.deposite_type" Schema="bank_system" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="bank_system" store:Type="Tables" />
-          <AssociationSet Name="fk_account_number" Association="Self.fk_account_number">
+          <AssociationSet Name="fk_account_id" Association="Self.fk_account_id">
             <End Role="bank_account" EntitySet="bank_account" />
             <End Role="bank_deposit" EntitySet="bank_deposit" />
           </AssociationSet>
@@ -194,23 +195,24 @@
       <Schema Namespace="bank_systemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="bank_account">
           <Key>
-            <PropertyRef Name="Number" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sum" Type="Int32" />
-          <NavigationProperty Name="bank_deposit" Relationship="Self.fk_account_number" FromRole="bank_account" ToRole="bank_deposit" />
+          <NavigationProperty Name="bank_deposit" Relationship="Self.fk_account_id" FromRole="bank_account" ToRole="bank_deposit" />
           <NavigationProperty Name="user" Relationship="Self.fk_us_log" FromRole="bank_account" ToRole="user" />
         </EntityType>
         <EntityType Name="bank_deposit">
           <Key>
-            <PropertyRef Name="Account_number" />
+            <PropertyRef Name="Account_id" />
           </Key>
-          <Property Name="Account_number" Type="Int32" Nullable="false" />
+          <Property Name="Account_id" Type="Int32" Nullable="false" />
           <Property Name="Deposite_type_id" Type="Int32" Nullable="false" />
           <Property Name="Opening_date" Type="DateTime" Nullable="false" />
           <Property Name="Expiry_date" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="bank_account" Relationship="Self.fk_account_number" FromRole="bank_deposit" ToRole="bank_account" />
+          <NavigationProperty Name="bank_account" Relationship="Self.fk_account_id" FromRole="bank_deposit" ToRole="bank_account" />
           <NavigationProperty Name="deposite_type" Relationship="Self.fk_deposite_type_id" FromRole="bank_deposit" ToRole="deposite_type" />
         </EntityType>
         <EntityType Name="credit">
@@ -269,17 +271,17 @@
           <NavigationProperty Name="credit" Relationship="Self.fk_us_login" FromRole="user" ToRole="credit" />
           <NavigationProperty Name="data_of_user" Relationship="Self.fk_user_login" FromRole="user" ToRole="data_of_user" />
         </EntityType>
-        <Association Name="fk_account_number">
+        <Association Name="fk_account_id">
           <End Role="bank_account" Type="Self.bank_account" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="bank_deposit" Type="Self.bank_deposit" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="bank_account">
-              <PropertyRef Name="Number" />
+              <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="bank_deposit">
-              <PropertyRef Name="Account_number" />
+              <PropertyRef Name="Account_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -361,7 +363,7 @@
           <EntitySet Name="data_of_user" EntityType="Self.data_of_user" />
           <EntitySet Name="deposite_type" EntityType="Self.deposite_type" />
           <EntitySet Name="user" EntityType="Self.user" />
-          <AssociationSet Name="fk_account_number" Association="Self.fk_account_number">
+          <AssociationSet Name="fk_account_id" Association="Self.fk_account_id">
             <End Role="bank_account" EntitySet="bank_account" />
             <End Role="bank_deposit" EntitySet="bank_deposit" />
           </AssociationSet>
@@ -395,6 +397,7 @@
           <EntitySetMapping Name="bank_account">
             <EntityTypeMapping TypeName="bank_systemModel.bank_account">
               <MappingFragment StoreEntitySet="bank_account">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="User_login" ColumnName="User_login" />
                 <ScalarProperty Name="Sum" ColumnName="Sum" />
@@ -404,7 +407,7 @@
           <EntitySetMapping Name="bank_deposit">
             <EntityTypeMapping TypeName="bank_systemModel.bank_deposit">
               <MappingFragment StoreEntitySet="bank_deposit">
-                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+                <ScalarProperty Name="Account_id" ColumnName="Account_id" />
                 <ScalarProperty Name="Deposite_type_id" ColumnName="Deposite_type_id" />
                 <ScalarProperty Name="Opening_date" ColumnName="Opening_date" />
                 <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />

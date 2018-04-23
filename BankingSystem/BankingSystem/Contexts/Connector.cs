@@ -42,7 +42,7 @@ namespace BankingSystem
 
         protected List<credit> getCreditsToList()
         {
-            return dbContext.credit.ToList();
+            return dbContext.credit.ToList(); 
         }
 
         protected List<credit_type> getCreditTypesToList()
@@ -88,30 +88,22 @@ namespace BankingSystem
 
         protected void updateUser(user user) //the login is not changing
         {
-            try
+            user foundUser = findUserByLogin(user.Login);
+            if (foundUser != null) //если нашли
             {
-                user foundUser = findUserByLogin(user.Login);
-                if (foundUser != null) //если нашли
+                //изменить юзера
+                //foundUser.Password = user.Password;
+                //foundUser.Admin = user.Admin;
+                // Обновить данные в БД с помощью Entity Framework
+                try
                 {
-                    //изменить юзера
-                    foundUser.Password = user.Password;
-                    foundUser.Admin = user.Admin;
-                    // Обновить данные в БД с помощью Entity Framework
-                    try
-                    {
-                        dbContext.Entry<user>(foundUser).State = EntityState.Modified;
-                        dbContext.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.Message);
-                    }
+                    dbContext.Entry<user>(foundUser).State = EntityState.Modified;
+                    dbContext.SaveChanges();
                 }
-                dbContext.SaveChanges();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
             }
         }
 

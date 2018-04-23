@@ -20,7 +20,7 @@ namespace BankingSystem.Forms
             InitializeComponent();
             this.userContext = userContext;
             this.user = user;
-            this.user.data_of_user = userContext.FindUserDataByLogin(user.Login);
+            //this.user.data_of_user = userContext.FindUserDataByLogin(user.Login);
         }
 
         private void AdministratorForm_Load(object sender, EventArgs e)
@@ -38,7 +38,7 @@ namespace BankingSystem.Forms
             data_of_user userData = new data_of_user();
 
             createdUser.Login = textBoxLogin.Text.Trim();
-            userData.User_login = textBoxLogin.Text.Trim();
+            //userData.User_login = textBoxLogin.Text.Trim();
             createdUser.data_of_user = userData;
             userData.user = createdUser;
             createdUser.Admin = Convert.ToBoolean(checkBoxAdmin.CheckState);

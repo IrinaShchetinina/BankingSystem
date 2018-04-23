@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,14 +33,16 @@ namespace BankingSystem
             return getUsersDataToList();
         }
 
-        public List<bank_account> GetBankAccountsToList(string userLogin)
+        public BindingList<bank_account> GetBankAccountsToBindingList(string userLogin)
         {
-            return getBankAccountsToList(userLogin); ;
+            BindingList<bank_account> bl = new BindingList<bank_account>(getBankAccountsToList(userLogin));
+            return bl; 
         }
 
-        public List<bank_deposit> GetBankDepositsToList(string userLogin)
+        public BindingList<bank_deposit> GetBankDepositsToBindingList(string userLogin)
         {
-            return getBankDepositsToList(userLogin);
+            BindingList<bank_deposit> bl = new BindingList<bank_deposit>(getBankDepositsToList(userLogin));
+            return bl;
         }
 
         public List<credit> GetCreditsToList()

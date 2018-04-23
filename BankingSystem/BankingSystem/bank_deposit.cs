@@ -14,10 +14,10 @@ namespace BankingSystem
     
     public partial class bank_deposit
     {
-        public int Account_number { get; set; }
+        public int Account_id { get; set; }
         public int Deposite_type_id { get; set; }
-        public DateTime Opening_date { get; set; }
-        public DateTime Expiry_date { get; set; }
+        public System.DateTime Opening_date { get; set; }
+        public System.DateTime Expiry_date { get; set; }
     
         public virtual bank_account bank_account { get; set; }
         public virtual deposite_type deposite_type { get; set; }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BankingSystem.BusinessLogic;
 
 namespace BankingSystem.Forms
 {
@@ -20,7 +21,7 @@ namespace BankingSystem.Forms
             InitializeComponent();
             this.userContext = userContext;
             this.user = user;
-            this.user.data_of_user = userContext.FindUserDataByLogin(user.Login);
+            //this.user.data_of_user = userContext.FindUserDataByLogin(user.Login);
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -31,16 +32,28 @@ namespace BankingSystem.Forms
             labelPassSer.Text = user.data_of_user.Passport_series;
             labelPassNum.Text = user.data_of_user.Passport_number;
 
-            user.bank_account = userContext.GetBankAccountsToList(user.Login);
+            user.bank_account = userContext.GetBankAccountsToBindingList(user.Login);
+            
             dataGridViewAccounts.DataSource = user.bank_account;
-            dataGridViewAccounts.Columns[1].Visible = false;
-            dataGridViewAccounts.Columns[3].Visible = false;
+            dataGridViewAccounts.Columns[0].Visible = false;
+            dataGridViewAccounts.Columns[2].Visible = false;
             dataGridViewAccounts.Columns[4].Visible = false;
+            dataGridViewAccounts.Columns[5].Visible = false;
 
-            dataGridViewDeposits.DataSource = userContext.GetBankDepositsToList(user.Login);
+            dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
+            dataGridViewDeposits.Columns[0].Visible = false;
             dataGridViewDeposits.Columns[1].Visible = false;
             dataGridViewDeposits.Columns[4].Visible = false;
             dataGridViewDeposits.Columns[5].Visible = false;
+        }
+
+        private void buttonOpenAccount_Click(object sender, EventArgs e)
+        {
+            bank_account newAccount = AccountsAndDepositsRegulator.GenerateNewAccount();
+            newAccount.user = user;
+            user.bank_account.Add(newAccount);
+            userContext.UpdateUser(user);
+            MessageBox.Show("The account added!");
         }
     }
 }

@@ -41,21 +41,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPageDepositsAndAccounts = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dataGridViewAccounts = new System.Windows.Forms.DataGridView();
-            this.dataGridViewDeposits = new System.Windows.Forms.DataGridView();
-            this.buttonOpenAccount = new System.Windows.Forms.Button();
-            this.buttonCloseAccount = new System.Windows.Forms.Button();
-            this.buttonTransfer = new System.Windows.Forms.Button();
-            this.buttonOpenDeposit = new System.Windows.Forms.Button();
-            this.buttonCloseDeposit = new System.Windows.Forms.Button();
             this.buttonViewDepositInfo = new System.Windows.Forms.Button();
+            this.buttonCloseDeposit = new System.Windows.Forms.Button();
+            this.buttonOpenDeposit = new System.Windows.Forms.Button();
+            this.buttonTransfer = new System.Windows.Forms.Button();
+            this.buttonCloseAccount = new System.Windows.Forms.Button();
+            this.buttonOpenAccount = new System.Windows.Forms.Button();
+            this.dataGridViewDeposits = new System.Windows.Forms.DataGridView();
+            this.dataGridViewAccounts = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPagePersonalData.SuspendLayout();
             this.tabPageDepositsAndAccounts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDeposits)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -209,38 +209,66 @@
             this.tabPageDepositsAndAccounts.Text = "Deposits & accounts";
             this.tabPageDepositsAndAccounts.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // buttonViewDepositInfo
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(44, 20);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 16);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "Accounts:";
+            this.buttonViewDepositInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonViewDepositInfo.Location = new System.Drawing.Point(531, 227);
+            this.buttonViewDepositInfo.Name = "buttonViewDepositInfo";
+            this.buttonViewDepositInfo.Size = new System.Drawing.Size(177, 23);
+            this.buttonViewDepositInfo.TabIndex = 10;
+            this.buttonViewDepositInfo.Text = "View info about the deposit";
+            this.buttonViewDepositInfo.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // buttonCloseDeposit
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(44, 199);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 16);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Deposits:";
+            this.buttonCloseDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCloseDeposit.Location = new System.Drawing.Point(569, 345);
+            this.buttonCloseDeposit.Name = "buttonCloseDeposit";
+            this.buttonCloseDeposit.Size = new System.Drawing.Size(111, 23);
+            this.buttonCloseDeposit.TabIndex = 9;
+            this.buttonCloseDeposit.Text = "Close deposit";
+            this.buttonCloseDeposit.UseVisualStyleBackColor = true;
             // 
-            // dataGridViewAccounts
+            // buttonOpenDeposit
             // 
-            this.dataGridViewAccounts.AllowUserToAddRows = false;
-            this.dataGridViewAccounts.AllowUserToDeleteRows = false;
-            this.dataGridViewAccounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAccounts.Location = new System.Drawing.Point(6, 46);
-            this.dataGridViewAccounts.MultiSelect = false;
-            this.dataGridViewAccounts.Name = "dataGridViewAccounts";
-            this.dataGridViewAccounts.ReadOnly = true;
-            this.dataGridViewAccounts.Size = new System.Drawing.Size(507, 141);
-            this.dataGridViewAccounts.TabIndex = 3;
+            this.buttonOpenDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonOpenDeposit.Location = new System.Drawing.Point(569, 288);
+            this.buttonOpenDeposit.Name = "buttonOpenDeposit";
+            this.buttonOpenDeposit.Size = new System.Drawing.Size(111, 23);
+            this.buttonOpenDeposit.TabIndex = 8;
+            this.buttonOpenDeposit.Text = "Open deposit";
+            this.buttonOpenDeposit.UseVisualStyleBackColor = true;
+            // 
+            // buttonTransfer
+            // 
+            this.buttonTransfer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonTransfer.Location = new System.Drawing.Point(531, 164);
+            this.buttonTransfer.Name = "buttonTransfer";
+            this.buttonTransfer.Size = new System.Drawing.Size(177, 23);
+            this.buttonTransfer.TabIndex = 7;
+            this.buttonTransfer.Text = "Transfer between accounts";
+            this.buttonTransfer.UseVisualStyleBackColor = true;
+            // 
+            // buttonCloseAccount
+            // 
+            this.buttonCloseAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCloseAccount.Location = new System.Drawing.Point(569, 107);
+            this.buttonCloseAccount.Name = "buttonCloseAccount";
+            this.buttonCloseAccount.Size = new System.Drawing.Size(111, 23);
+            this.buttonCloseAccount.TabIndex = 6;
+            this.buttonCloseAccount.Text = "Close account";
+            this.buttonCloseAccount.UseVisualStyleBackColor = true;
+            // 
+            // buttonOpenAccount
+            // 
+            this.buttonOpenAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonOpenAccount.Location = new System.Drawing.Point(569, 46);
+            this.buttonOpenAccount.Name = "buttonOpenAccount";
+            this.buttonOpenAccount.Size = new System.Drawing.Size(111, 23);
+            this.buttonOpenAccount.TabIndex = 5;
+            this.buttonOpenAccount.Text = "Open account";
+            this.buttonOpenAccount.UseVisualStyleBackColor = true;
+            this.buttonOpenAccount.Click += new System.EventHandler(this.buttonOpenAccount_Click);
             // 
             // dataGridViewDeposits
             // 
@@ -255,65 +283,38 @@
             this.dataGridViewDeposits.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewDeposits.TabIndex = 4;
             // 
-            // buttonOpenAccount
+            // dataGridViewAccounts
             // 
-            this.buttonOpenAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonOpenAccount.Location = new System.Drawing.Point(569, 46);
-            this.buttonOpenAccount.Name = "buttonOpenAccount";
-            this.buttonOpenAccount.Size = new System.Drawing.Size(111, 23);
-            this.buttonOpenAccount.TabIndex = 5;
-            this.buttonOpenAccount.Text = "Open account";
-            this.buttonOpenAccount.UseVisualStyleBackColor = true;
+            this.dataGridViewAccounts.AllowUserToAddRows = false;
+            this.dataGridViewAccounts.AllowUserToDeleteRows = false;
+            this.dataGridViewAccounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAccounts.Location = new System.Drawing.Point(6, 46);
+            this.dataGridViewAccounts.MultiSelect = false;
+            this.dataGridViewAccounts.Name = "dataGridViewAccounts";
+            this.dataGridViewAccounts.ReadOnly = true;
+            this.dataGridViewAccounts.Size = new System.Drawing.Size(507, 141);
+            this.dataGridViewAccounts.TabIndex = 3;
             // 
-            // buttonCloseAccount
+            // label7
             // 
-            this.buttonCloseAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCloseAccount.Location = new System.Drawing.Point(569, 107);
-            this.buttonCloseAccount.Name = "buttonCloseAccount";
-            this.buttonCloseAccount.Size = new System.Drawing.Size(111, 23);
-            this.buttonCloseAccount.TabIndex = 6;
-            this.buttonCloseAccount.Text = "Close account";
-            this.buttonCloseAccount.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(44, 199);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 16);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Deposits:";
             // 
-            // buttonTransfer
+            // label6
             // 
-            this.buttonTransfer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonTransfer.Location = new System.Drawing.Point(531, 164);
-            this.buttonTransfer.Name = "buttonTransfer";
-            this.buttonTransfer.Size = new System.Drawing.Size(177, 23);
-            this.buttonTransfer.TabIndex = 7;
-            this.buttonTransfer.Text = "Transfer between accounts";
-            this.buttonTransfer.UseVisualStyleBackColor = true;
-            // 
-            // buttonOpenDeposit
-            // 
-            this.buttonOpenDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonOpenDeposit.Location = new System.Drawing.Point(569, 288);
-            this.buttonOpenDeposit.Name = "buttonOpenDeposit";
-            this.buttonOpenDeposit.Size = new System.Drawing.Size(111, 23);
-            this.buttonOpenDeposit.TabIndex = 8;
-            this.buttonOpenDeposit.Text = "Open deposit";
-            this.buttonOpenDeposit.UseVisualStyleBackColor = true;
-            // 
-            // buttonCloseDeposit
-            // 
-            this.buttonCloseDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCloseDeposit.Location = new System.Drawing.Point(569, 345);
-            this.buttonCloseDeposit.Name = "buttonCloseDeposit";
-            this.buttonCloseDeposit.Size = new System.Drawing.Size(111, 23);
-            this.buttonCloseDeposit.TabIndex = 9;
-            this.buttonCloseDeposit.Text = "Close deposit";
-            this.buttonCloseDeposit.UseVisualStyleBackColor = true;
-            // 
-            // buttonViewDepositInfo
-            // 
-            this.buttonViewDepositInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonViewDepositInfo.Location = new System.Drawing.Point(531, 227);
-            this.buttonViewDepositInfo.Name = "buttonViewDepositInfo";
-            this.buttonViewDepositInfo.Size = new System.Drawing.Size(177, 23);
-            this.buttonViewDepositInfo.TabIndex = 10;
-            this.buttonViewDepositInfo.Text = "View info about the deposit";
-            this.buttonViewDepositInfo.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(44, 20);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 16);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Accounts:";
             // 
             // UserForm
             // 
@@ -329,8 +330,8 @@
             this.tabPagePersonalData.PerformLayout();
             this.tabPageDepositsAndAccounts.ResumeLayout(false);
             this.tabPageDepositsAndAccounts.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDeposits)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).EndInit();
             this.ResumeLayout(false);
 
         }

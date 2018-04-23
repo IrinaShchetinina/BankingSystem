@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="577134603cb94d7688666418f0894079" Name="Diagram1">
-        <EntityTypeShape EntityType="bank_systemModel.bank_account" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+      <Diagram DiagramId="438e46dcf57c4dbfb9dbd62c66f74064" Name="Diagram1">
+        <EntityTypeShape EntityType="bank_systemModel.bank_account" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bank_systemModel.bank_deposit" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bank_systemModel.credit" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="bank_systemModel.credit_type" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="bank_systemModel.data_of_user" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bank_systemModel.data_of_user" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="bank_systemModel.deposite_type" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="bank_systemModel.user" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="bank_systemModel.fk_account_number" ManuallyRouted="false" />
+        <AssociationConnector Association="bank_systemModel.fk_account_id" ManuallyRouted="false" />
         <AssociationConnector Association="bank_systemModel.fk_us_log" ManuallyRouted="false" />
         <AssociationConnector Association="bank_systemModel.fk_deposite_type_id" ManuallyRouted="false" />
         <AssociationConnector Association="bank_systemModel.fk_credit_type_id" ManuallyRouted="false" />

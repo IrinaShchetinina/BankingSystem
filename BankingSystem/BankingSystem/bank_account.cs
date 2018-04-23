@@ -14,7 +14,8 @@ namespace BankingSystem
     
     public partial class bank_account
     {
-        public int Number { get; set; }
+        public int id { get; set; }
+        public string Number { get; set; }
         public string User_login { get; set; }
         public Nullable<int> Sum { get; set; }
     
