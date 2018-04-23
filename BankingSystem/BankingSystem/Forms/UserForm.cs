@@ -66,7 +66,6 @@ namespace BankingSystem.Forms
                 if (check)
                 {
                     userContext.DeleteBankAccount(deletingAccount);
-                    //user.bank_account.Remove(deletingAccount);
                     userContext.UpdateUser(user);
                     MessageBox.Show("The account is deleted!");
                 }
