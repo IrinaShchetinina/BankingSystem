@@ -119,5 +119,18 @@ namespace BankingSystem
                 MessageBox.Show(e.Message);
             }
         }
+
+        protected void deleteBankAccount(bank_account account)
+        {
+            try
+            {
+                dbContext.bank_account.Remove(account);
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
     }
 }

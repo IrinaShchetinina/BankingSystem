@@ -84,5 +84,10 @@ namespace BankingSystem
         {
             deleteUser(user);
         }
+
+        public void DeleteBankAccount(bank_account account)
+        {
+            deleteBankAccount(account);
+        }
     }
 }

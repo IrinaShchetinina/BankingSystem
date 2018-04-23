@@ -55,5 +55,24 @@ namespace BankingSystem.Forms
             userContext.UpdateUser(user);
             MessageBox.Show("The account added!");
         }
+
+        private void buttonCloseAccount_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAccounts.SelectedRows[0] != null)
+            {
+                int selectedAccountId = Convert.ToInt32(dataGridViewAccounts.SelectedRows[0].Cells[0].Value);
+                bank_account deletingAccount = user.bank_account.Where(a => a.id == selectedAccountId).First();
+                bool check = AccountsAndDepositsRegulator.DeleteAccountCheck(deletingAccount);
+                if (check)
+                {
+                    userContext.DeleteBankAccount(deletingAccount);
+                    //user.bank_account.Remove(deletingAccount);
+                    userContext.UpdateUser(user);
+                    MessageBox.Show("The account is deleted!");
+                }
+            }
+            else
+                MessageBox.Show("Account is not selected!");
+        }
     }
 }

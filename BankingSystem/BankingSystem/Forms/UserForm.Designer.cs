@@ -258,6 +258,7 @@
             this.buttonCloseAccount.TabIndex = 6;
             this.buttonCloseAccount.Text = "Close account";
             this.buttonCloseAccount.UseVisualStyleBackColor = true;
+            this.buttonCloseAccount.Click += new System.EventHandler(this.buttonCloseAccount_Click);
             // 
             // buttonOpenAccount
             // 
@@ -280,6 +281,7 @@
             this.dataGridViewDeposits.MultiSelect = false;
             this.dataGridViewDeposits.Name = "dataGridViewDeposits";
             this.dataGridViewDeposits.ReadOnly = true;
+            this.dataGridViewDeposits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDeposits.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewDeposits.TabIndex = 4;
             // 
@@ -293,6 +295,7 @@
             this.dataGridViewAccounts.MultiSelect = false;
             this.dataGridViewAccounts.Name = "dataGridViewAccounts";
             this.dataGridViewAccounts.ReadOnly = true;
+            this.dataGridViewAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAccounts.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewAccounts.TabIndex = 3;
             // 
