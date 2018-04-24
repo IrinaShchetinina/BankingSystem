@@ -248,6 +248,7 @@
             this.buttonTransfer.TabIndex = 7;
             this.buttonTransfer.Text = "Transfer between accounts";
             this.buttonTransfer.UseVisualStyleBackColor = true;
+            this.buttonTransfer.Click += new System.EventHandler(this.buttonTransfer_Click);
             // 
             // buttonCloseAccount
             // 

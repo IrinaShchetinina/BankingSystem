@@ -32,5 +32,28 @@ namespace BankingSystem.BusinessLogic
                 MessageBox.Show("This account is deposit!!! Deletion is not possible while the deposit is not closed!");
             return false;
         }
+
+        internal static bool TransferMoney(bank_account accountFrom, bank_account accountTo, int sum)
+        {
+            if(accountFrom.Number != accountTo.Number)
+            {
+                if (accountFrom.bank_deposit == null && accountTo.bank_deposit == null)
+                {
+                    if(accountFrom.Sum >= sum)
+                    {
+                        accountFrom.Sum -= sum;
+                        accountTo.Sum += sum;
+                        return true;
+                    }
+                    else
+                        MessageBox.Show("There is not enough money in the write-off account!");
+                }
+                else
+                    MessageBox.Show("This account is deposit!!! Transfer is not possible while the deposit is not closed!");
+            }
+            else
+                MessageBox.Show("The same account is selected!");
+            return false;
+        }
     }
 }

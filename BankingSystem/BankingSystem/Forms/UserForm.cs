@@ -73,5 +73,36 @@ namespace BankingSystem.Forms
             else
                 MessageBox.Show("Account is not selected!");
         }
+
+        private void buttonTransfer_Click(object sender, EventArgs e)
+        {
+            MoneyTransferForm transferForm = new MoneyTransferForm(user.bank_account.Select(a => a.Number).ToArray(), false);
+            if(transferForm.ShowDialog() == DialogResult.OK)
+            {
+                string numberAccountFrom = transferForm.comboBoxFrom.Text;
+                string numberAccountTo = transferForm.comboBoxTo.Text;
+
+                int sum;
+
+                if (numberAccountFrom != null && numberAccountTo != null)
+                {
+                    if(transferForm.textBoxSum != null && int.TryParse(transferForm.textBoxSum.Text, out sum))
+                    {
+                        bank_account accountFrom = user.bank_account.Where(a => a.Number == numberAccountFrom).First();
+                        bank_account accountTo = user.bank_account.Where(a => a.Number == numberAccountTo).First();
+
+                        if(AccountsAndDepositsRegulator.TransferMoney(accountFrom, accountTo, sum))
+                        {
+                            userContext.UpdateUser(user);
+                            MessageBox.Show("The money was transferred!");
+                        }
+                    }
+                    else
+                        MessageBox.Show("The entered sum is incorrect!");
+                }
+                else
+                    MessageBox.Show("The account is not selected!");   
+            }
+        }
     }
 }
