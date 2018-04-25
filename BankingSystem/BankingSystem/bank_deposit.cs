@@ -15,6 +15,7 @@ namespace BankingSystem
     public partial class bank_deposit
     {
         public int Account_id { get; set; }
+        public int Start_sum { get; set; }
         public int Deposite_type_id { get; set; }
         public System.DateTime Opening_date { get; set; }
         public System.DateTime Expiry_date { get; set; }

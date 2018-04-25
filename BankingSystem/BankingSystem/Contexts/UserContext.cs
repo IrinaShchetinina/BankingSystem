@@ -45,19 +45,22 @@ namespace BankingSystem
             return bl;
         }
 
-        public List<credit> GetCreditsToList()
+        public BindingList<credit> GetCreditsToBindingList(string userLogin)
         {
-            return getCreditsToList();
+            BindingList<credit> bl = new BindingList<credit>(getCreditsToList(userLogin));
+            return bl;
         }
 
-        public List<credit_type> GetCreditTypesToList()
+        public BindingList<credit_type> GetCreditTypesToBindingList()
         {
-            return getCreditTypesToList();
+            BindingList<credit_type> bl = new BindingList<credit_type>(getCreditTypesToList());
+            return bl;
         }
 
-        public List<deposite_type> GetDepositTypesToList()
+        public BindingList<deposite_type> GetDepositTypesToBindingList()
         {
-            return getDepositTypesToList();
+            BindingList<deposite_type> bl = new BindingList<deposite_type>(getDepositTypesToList());
+            return bl;
         }
 
         public bool AddUser(user user)
@@ -68,6 +71,11 @@ namespace BankingSystem
         public user FindUserByLogin(string userLogin)
         {
             return findUserByLogin(userLogin);
+        }
+
+        public deposite_type FindDepositeTypeById(int id)
+        {
+            return findDepositeTypeById(id);
         }
 
         public data_of_user FindUserDataByLogin(string userLogin)

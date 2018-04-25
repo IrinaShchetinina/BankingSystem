@@ -55,5 +55,33 @@ namespace BankingSystem.BusinessLogic
                 MessageBox.Show("The same account is selected!");
             return false;
         }
+
+        internal static bank_account OpenDeposite(deposite_type depositeType, bank_account accountFrom, int sum)
+        {
+            if(accountFrom.bank_deposit == null)
+            {
+                if (accountFrom.Sum >= sum)
+                {
+                    accountFrom.Sum -= sum;
+                    bank_deposit newDeposit = new bank_deposit();
+                    bank_account newAccount = GenerateNewAccount();
+                    newAccount.Sum = sum;
+                    newAccount.bank_deposit = newDeposit;
+                    newDeposit.Account_id = newAccount.id;
+                    newDeposit.bank_account = newAccount;
+                    newDeposit.deposite_type = depositeType;
+                    newDeposit.Opening_date = DateTime.Now.Date;
+                    newDeposit.Expiry_date = newDeposit.Opening_date.AddMonths(depositeType.Term);
+                    newDeposit.Start_sum = sum;
+                    return newAccount;
+                }
+                else
+                    MessageBox.Show("This account is deposit!!!Transfer is not possible while the deposit is not closed!");
+            }
+            else
+                MessageBox.Show("There is not enough money in the write-off account!");
+
+            return null;
+        }
     }
 }

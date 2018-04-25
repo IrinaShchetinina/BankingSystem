@@ -19,6 +19,7 @@
             <PropertyRef Name="Account_id" />
           </Key>
           <Property Name="Account_id" Type="int" Nullable="false" />
+          <Property Name="Start_sum" Type="int" Nullable="false" />
           <Property Name="Deposite_type_id" Type="int" Nullable="false" />
           <Property Name="Opening_date" Type="date" Nullable="false" />
           <Property Name="Expiry_date" Type="date" Nullable="false" />
@@ -39,7 +40,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Interest_rate" Type="int" Nullable="false" />
+          <Property Name="Interest_rate" Type="double" Nullable="false" />
           <Property Name="Sum" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="data_of_user">
@@ -59,7 +60,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Term" Type="int" Nullable="false" />
-          <Property Name="Interest_rate" Type="int" Nullable="false" />
+          <Property Name="Interest_rate" Type="double" Nullable="false" />
           <Property Name="Capitalization" Type="bool" Nullable="false" />
           <Property Name="Early_closure" Type="bool" Nullable="false" />
         </EntityType>
@@ -209,6 +210,7 @@
             <PropertyRef Name="Account_id" />
           </Key>
           <Property Name="Account_id" Type="Int32" Nullable="false" />
+          <Property Name="Start_sum" Type="Int32" Nullable="false" />
           <Property Name="Deposite_type_id" Type="Int32" Nullable="false" />
           <Property Name="Opening_date" Type="DateTime" Nullable="false" />
           <Property Name="Expiry_date" Type="DateTime" Nullable="false" />
@@ -233,7 +235,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Interest_rate" Type="Int32" Nullable="false" />
+          <Property Name="Interest_rate" Type="Double" Nullable="false" />
           <Property Name="Sum" Type="Int32" Nullable="false" />
           <NavigationProperty Name="credit" Relationship="Self.fk_credit_type_id" FromRole="credit_type" ToRole="credit" />
         </EntityType>
@@ -255,7 +257,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Term" Type="Int32" Nullable="false" />
-          <Property Name="Interest_rate" Type="Int32" Nullable="false" />
+          <Property Name="Interest_rate" Type="Double" Nullable="false" />
           <Property Name="Capitalization" Type="Boolean" Nullable="false" />
           <Property Name="Early_closure" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="bank_deposit" Relationship="Self.fk_deposite_type_id" FromRole="deposite_type" ToRole="bank_deposit" />
@@ -408,6 +410,7 @@
             <EntityTypeMapping TypeName="bank_systemModel.bank_deposit">
               <MappingFragment StoreEntitySet="bank_deposit">
                 <ScalarProperty Name="Account_id" ColumnName="Account_id" />
+                <ScalarProperty Name="Start_sum" ColumnName="Start_sum" />
                 <ScalarProperty Name="Deposite_type_id" ColumnName="Deposite_type_id" />
                 <ScalarProperty Name="Opening_date" ColumnName="Opening_date" />
                 <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />

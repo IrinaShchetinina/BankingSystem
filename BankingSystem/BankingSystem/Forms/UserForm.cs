@@ -43,8 +43,9 @@ namespace BankingSystem.Forms
             dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
             dataGridViewDeposits.Columns[0].Visible = false;
             dataGridViewDeposits.Columns[1].Visible = false;
-            dataGridViewDeposits.Columns[4].Visible = false;
+            dataGridViewDeposits.Columns[2].Visible = false;
             dataGridViewDeposits.Columns[5].Visible = false;
+            dataGridViewDeposits.Columns[6].Visible = false;
         }
 
         private void buttonOpenAccount_Click(object sender, EventArgs e)
@@ -102,6 +103,38 @@ namespace BankingSystem.Forms
                 }
                 else
                     MessageBox.Show("The account is not selected!");   
+            }
+        }
+
+        private void buttonOpenDeposit_Click(object sender, EventArgs e)
+        {
+            BindingList<deposite_type> types = userContext.GetDepositTypesToBindingList();
+            TypesOfDepositsForm typesFotm = new TypesOfDepositsForm(types, user.bank_account.Select(a => a.Number).ToArray());
+            if(typesFotm.ShowDialog() == DialogResult.OK)
+            {
+                int sum;
+                if (typesFotm.textBoxSum != null && int.TryParse(typesFotm.textBoxSum.Text, out sum))
+                {
+                    string numberAccountFrom = typesFotm.comboBoxFrom.Text;
+                    if (numberAccountFrom != null)
+                    {
+                        bank_account accountFrom = user.bank_account.Where(a => a.Number == numberAccountFrom).First();
+                        int depositTypeId = Convert.ToInt32(typesFotm.dataGridViewTypesOfDeposits.SelectedRows[0].Cells[0].Value);
+                        deposite_type depositType = userContext.FindDepositeTypeById(depositTypeId);
+                        bank_account depositAccount = AccountsAndDepositsRegulator.OpenDeposite(depositType, accountFrom, sum);
+                        if (depositAccount != null)
+                        {
+                            depositAccount.user = user;
+                            user.bank_account.Add(depositAccount);
+                            userContext.UpdateUser(user);
+                            dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
+                        }   
+                    }
+                    else
+                        MessageBox.Show("The account is not selected!");
+                }
+                else
+                    MessageBox.Show("The entered sum is incorrect!");
             }
         }
     }

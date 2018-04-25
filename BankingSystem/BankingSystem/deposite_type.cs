@@ -22,7 +22,7 @@ namespace BankingSystem
     
         public int id { get; set; }
         public int Term { get; set; }
-        public int Interest_rate { get; set; }
+        public double Interest_rate { get; set; }
         public bool Capitalization { get; set; }
         public bool Early_closure { get; set; }
     

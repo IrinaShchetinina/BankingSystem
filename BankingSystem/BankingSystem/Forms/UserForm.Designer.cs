@@ -238,6 +238,7 @@
             this.buttonOpenDeposit.TabIndex = 8;
             this.buttonOpenDeposit.Text = "Open deposit";
             this.buttonOpenDeposit.UseVisualStyleBackColor = true;
+            this.buttonOpenDeposit.Click += new System.EventHandler(this.buttonOpenDeposit_Click);
             // 
             // buttonTransfer
             // 
