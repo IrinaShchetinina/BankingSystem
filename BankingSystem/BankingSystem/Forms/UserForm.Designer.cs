@@ -228,6 +228,7 @@
             this.buttonCloseDeposit.TabIndex = 9;
             this.buttonCloseDeposit.Text = "Close deposit";
             this.buttonCloseDeposit.UseVisualStyleBackColor = true;
+            this.buttonCloseDeposit.Click += new System.EventHandler(this.buttonCloseDeposit_Click);
             // 
             // buttonOpenDeposit
             // 

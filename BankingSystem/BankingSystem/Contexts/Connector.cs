@@ -84,7 +84,12 @@ namespace BankingSystem
 
         protected deposite_type findDepositeTypeById(int id)
         {
-            return dbContext.deposite_type.Where(l => l.id == id).FirstOrDefault(); //находим или возвращаем null
+            return dbContext.deposite_type.Where(dt => dt.id == id).FirstOrDefault(); //находим или возвращаем null
+        }
+
+        protected bank_deposit findDepositeByAccountId(int accountId)
+        {
+            return dbContext.bank_deposit.Where(d => d.Account_id == accountId).FirstOrDefault(); //находим или возвращаем null
         }
 
         protected data_of_user findUserDataByLogin(string userLogin)
@@ -131,6 +136,19 @@ namespace BankingSystem
             try
             {
                 dbContext.bank_account.Remove(account);
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        protected void deleteBankDeposit(bank_deposit deposit)
+        {
+            try
+            {
+                dbContext.bank_deposit.Remove(deposit);
                 dbContext.SaveChanges();
             }
             catch (Exception e)

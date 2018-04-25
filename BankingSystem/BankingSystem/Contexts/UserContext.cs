@@ -83,6 +83,11 @@ namespace BankingSystem
             return findUserDataByLogin(userLogin);
         }
 
+        public bank_deposit FindDepositeByAccountId(int accountId)
+        {
+            return findDepositeByAccountId(accountId);
+        }
+
         public void UpdateUser(user user) //the login is not changing
         {
             updateUser(user);
@@ -96,6 +101,11 @@ namespace BankingSystem
         public void DeleteBankAccount(bank_account account)
         {
             deleteBankAccount(account);
+        }
+
+        public void DeleteBankDeposit(bank_deposit deposit)
+        {
+            deleteBankDeposit(deposit);
         }
     }
 }

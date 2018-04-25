@@ -59,12 +59,12 @@ namespace BankingSystem.Forms
 
         private void buttonCloseAccount_Click(object sender, EventArgs e)
         {
-            if (dataGridViewAccounts.SelectedRows[0] != null)
+            if (dataGridViewAccounts.SelectedRows.Count > 0)
             {
                 int selectedAccountId = Convert.ToInt32(dataGridViewAccounts.SelectedRows[0].Cells[0].Value);
                 bank_account deletingAccount = user.bank_account.Where(a => a.id == selectedAccountId).First();
-                bool check = AccountsAndDepositsRegulator.DeleteAccountCheck(deletingAccount);
-                if (check)
+
+                if (AccountsAndDepositsRegulator.DeleteAccountCheck(deletingAccount))
                 {
                     userContext.DeleteBankAccount(deletingAccount);
                     userContext.UpdateUser(user);
@@ -128,6 +128,7 @@ namespace BankingSystem.Forms
                             user.bank_account.Add(depositAccount);
                             userContext.UpdateUser(user);
                             dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
+                            MessageBox.Show("Deposit is opened!");
                         }   
                     }
                     else
@@ -136,6 +137,26 @@ namespace BankingSystem.Forms
                 else
                     MessageBox.Show("The entered sum is incorrect!");
             }
+        }
+
+        private void buttonCloseDeposit_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewDeposits.SelectedRows.Count > 0)
+            {
+                int selectedDepositAccountId = Convert.ToInt32(dataGridViewDeposits.SelectedRows[0].Cells[0].Value);
+                bank_deposit closingDeposit = userContext.FindDepositeByAccountId(selectedDepositAccountId);
+                if(AccountsAndDepositsRegulator.CloseDepositCheck(closingDeposit))
+                {
+                    userContext.DeleteBankDeposit(closingDeposit);
+                    dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
+                    MessageBox.Show("Deposit is not selected!");
+                }
+                else
+                    MessageBox.Show("A deposit without the possibility of early closure can not be closed until the expiration date!");
+            }
+            else
+                MessageBox.Show("Deposit is closed!");
+
         }
     }
 }

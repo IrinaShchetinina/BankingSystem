@@ -18,6 +18,7 @@ namespace BankingSystem.Forms
             comboBoxFrom.Items.AddRange(userAccounts);
             dataGridViewTypesOfDeposits.DataSource = types;
             dataGridViewTypesOfDeposits.Columns[0].Visible = false;
+            dataGridViewTypesOfDeposits.Columns[5].Visible = false;
         }
     }
 }

@@ -83,5 +83,14 @@ namespace BankingSystem.BusinessLogic
 
             return null;
         }
+
+        internal static bool CloseDepositCheck(bank_deposit closingDeposit)
+        {
+            if((closingDeposit.deposite_type.Early_closure) | (closingDeposit.Expiry_date.CompareTo(DateTime.Now.Date) <= 0))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
