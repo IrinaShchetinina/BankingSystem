@@ -218,6 +218,7 @@
             this.buttonViewDepositInfo.TabIndex = 10;
             this.buttonViewDepositInfo.Text = "View info about the deposit";
             this.buttonViewDepositInfo.UseVisualStyleBackColor = true;
+            this.buttonViewDepositInfo.Click += new System.EventHandler(this.buttonViewDepositInfo_Click);
             // 
             // buttonCloseDeposit
             // 

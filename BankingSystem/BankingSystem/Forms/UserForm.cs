@@ -149,14 +149,27 @@ namespace BankingSystem.Forms
                 {
                     userContext.DeleteBankDeposit(closingDeposit);
                     dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
-                    MessageBox.Show("Deposit is not selected!");
+                    MessageBox.Show("Deposit is closed!");
                 }
                 else
                     MessageBox.Show("A deposit without the possibility of early closure can not be closed until the expiration date!");
             }
             else
-                MessageBox.Show("Deposit is closed!");
+                MessageBox.Show("Deposit is not selected!");
 
+        }
+
+        private void buttonViewDepositInfo_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewDeposits.SelectedRows.Count > 0)
+            {
+                int selectedDepositAccountId = Convert.ToInt32(dataGridViewDeposits.SelectedRows[0].Cells[0].Value);
+                bank_deposit selectedDeposit = userContext.FindDepositeByAccountId(selectedDepositAccountId);
+                InfoAboutDepositForm infoForm = new InfoAboutDepositForm(selectedDeposit);
+                infoForm.Show();
+            }
+            else
+                MessageBox.Show("Deposit is not selected!");
         }
     }
 }
