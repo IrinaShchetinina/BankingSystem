@@ -218,6 +218,7 @@
             this.buttonViewDepositInfo.TabIndex = 10;
             this.buttonViewDepositInfo.Text = "View info about the deposit";
             this.buttonViewDepositInfo.UseVisualStyleBackColor = true;
+            this.buttonViewDepositInfo.Click += new System.EventHandler(this.buttonViewDepositInfo_Click);
             // 
             // buttonCloseDeposit
             // 
@@ -228,6 +229,7 @@
             this.buttonCloseDeposit.TabIndex = 9;
             this.buttonCloseDeposit.Text = "Close deposit";
             this.buttonCloseDeposit.UseVisualStyleBackColor = true;
+            this.buttonCloseDeposit.Click += new System.EventHandler(this.buttonCloseDeposit_Click);
             // 
             // buttonOpenDeposit
             // 
@@ -238,6 +240,7 @@
             this.buttonOpenDeposit.TabIndex = 8;
             this.buttonOpenDeposit.Text = "Open deposit";
             this.buttonOpenDeposit.UseVisualStyleBackColor = true;
+            this.buttonOpenDeposit.Click += new System.EventHandler(this.buttonOpenDeposit_Click);
             // 
             // buttonTransfer
             // 
@@ -248,6 +251,7 @@
             this.buttonTransfer.TabIndex = 7;
             this.buttonTransfer.Text = "Transfer between accounts";
             this.buttonTransfer.UseVisualStyleBackColor = true;
+            this.buttonTransfer.Click += new System.EventHandler(this.buttonTransfer_Click);
             // 
             // buttonCloseAccount
             // 
@@ -258,6 +262,7 @@
             this.buttonCloseAccount.TabIndex = 6;
             this.buttonCloseAccount.Text = "Close account";
             this.buttonCloseAccount.UseVisualStyleBackColor = true;
+            this.buttonCloseAccount.Click += new System.EventHandler(this.buttonCloseAccount_Click);
             // 
             // buttonOpenAccount
             // 
@@ -280,6 +285,7 @@
             this.dataGridViewDeposits.MultiSelect = false;
             this.dataGridViewDeposits.Name = "dataGridViewDeposits";
             this.dataGridViewDeposits.ReadOnly = true;
+            this.dataGridViewDeposits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDeposits.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewDeposits.TabIndex = 4;
             // 
@@ -293,6 +299,7 @@
             this.dataGridViewAccounts.MultiSelect = false;
             this.dataGridViewAccounts.Name = "dataGridViewAccounts";
             this.dataGridViewAccounts.ReadOnly = true;
+            this.dataGridViewAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewAccounts.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewAccounts.TabIndex = 3;
             // 

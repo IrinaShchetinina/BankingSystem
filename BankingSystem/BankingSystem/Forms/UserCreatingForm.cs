@@ -27,10 +27,5 @@ namespace BankingSystem.Forms
             labelPassNum.Text = createdUser.data_of_user.Passport_number;
             labelAdmin.Text = createdUser.Admin ? "yes" : "no";
         }
-
-        private void UserCreatingForm_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

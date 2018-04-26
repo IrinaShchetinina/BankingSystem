@@ -243,7 +243,6 @@
             this.Controls.Add(this.label6);
             this.Name = "UserCreatingForm";
             this.Text = "UserCreating";
-            this.Load += new System.EventHandler(this.UserCreatingForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

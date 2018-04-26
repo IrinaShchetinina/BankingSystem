@@ -40,9 +40,9 @@ namespace BankingSystem
             return dbContext.bank_deposit.Where(d => d.bank_account.User_login == userLogin).ToList(); //??? или искать сначала счета и потом выбирать из них вклады
         }
 
-        protected List<credit> getCreditsToList()
+        protected List<credit> getCreditsToList(string userLogin)
         {
-            return dbContext.credit.ToList(); 
+            return dbContext.credit.Where(d => d.User_login == userLogin).ToList(); 
         }
 
         protected List<credit_type> getCreditTypesToList()
@@ -81,6 +81,17 @@ namespace BankingSystem
         {
             return dbContext.user.Where(l => l.Login == userLogin).FirstOrDefault(); //находим по логину или возвращаем null
         }
+
+        protected deposite_type findDepositeTypeById(int id)
+        {
+            return dbContext.deposite_type.Where(dt => dt.id == id).FirstOrDefault(); //находим или возвращаем null
+        }
+
+        protected bank_deposit findDepositeByAccountId(int accountId)
+        {
+            return dbContext.bank_deposit.Where(d => d.Account_id == accountId).FirstOrDefault(); //находим или возвращаем null
+        }
+
         protected data_of_user findUserDataByLogin(string userLogin)
         {
             return dbContext.data_of_user.Where(l => l.User_login == userLogin).FirstOrDefault(); //находим по логину или возвращаем null
@@ -112,6 +123,32 @@ namespace BankingSystem
             try
             {
                 dbContext.user.Remove(user);
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        protected void deleteBankAccount(bank_account account)
+        {
+            try
+            {
+                dbContext.bank_account.Remove(account);
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        protected void deleteBankDeposit(bank_deposit deposit)
+        {
+            try
+            {
+                dbContext.bank_deposit.Remove(deposit);
                 dbContext.SaveChanges();
             }
             catch (Exception e)
