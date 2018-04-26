@@ -51,22 +51,31 @@
             this.dataGridViewAccounts = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tabPageMoneyTransfer = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonTransferToAnotherUser = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridViewAccountsWithoutDeposits = new System.Windows.Forms.DataGridView();
             this.tabControl.SuspendLayout();
             this.tabPagePersonalData.SuspendLayout();
             this.tabPageDepositsAndAccounts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDeposits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
+            this.tabPageMoneyTransfer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccountsWithoutDeposits)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabPagePersonalData);
             this.tabControl.Controls.Add(this.tabPageDepositsAndAccounts);
+            this.tabControl.Controls.Add(this.tabPageMoneyTransfer);
+            this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(724, 419);
+            this.tabControl.Size = new System.Drawing.Size(724, 405);
             this.tabControl.TabIndex = 1;
             // 
             // tabPagePersonalData
@@ -204,7 +213,7 @@
             this.tabPageDepositsAndAccounts.Location = new System.Drawing.Point(4, 22);
             this.tabPageDepositsAndAccounts.Name = "tabPageDepositsAndAccounts";
             this.tabPageDepositsAndAccounts.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageDepositsAndAccounts.Size = new System.Drawing.Size(716, 393);
+            this.tabPageDepositsAndAccounts.Size = new System.Drawing.Size(716, 379);
             this.tabPageDepositsAndAccounts.TabIndex = 1;
             this.tabPageDepositsAndAccounts.Text = "Deposits & accounts";
             this.tabPageDepositsAndAccounts.UseVisualStyleBackColor = true;
@@ -323,11 +332,69 @@
             this.label6.TabIndex = 1;
             this.label6.Text = "Accounts:";
             // 
+            // tabPageMoneyTransfer
+            // 
+            this.tabPageMoneyTransfer.Controls.Add(this.dataGridViewAccountsWithoutDeposits);
+            this.tabPageMoneyTransfer.Controls.Add(this.label8);
+            this.tabPageMoneyTransfer.Controls.Add(this.buttonTransferToAnotherUser);
+            this.tabPageMoneyTransfer.Location = new System.Drawing.Point(4, 22);
+            this.tabPageMoneyTransfer.Name = "tabPageMoneyTransfer";
+            this.tabPageMoneyTransfer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMoneyTransfer.Size = new System.Drawing.Size(716, 379);
+            this.tabPageMoneyTransfer.TabIndex = 2;
+            this.tabPageMoneyTransfer.Text = "Money transfer";
+            this.tabPageMoneyTransfer.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(716, 393);
+            this.tabPage2.TabIndex = 3;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // buttonTransferToAnotherUser
+            // 
+            this.buttonTransferToAnotherUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonTransferToAnotherUser.Location = new System.Drawing.Point(256, 226);
+            this.buttonTransferToAnotherUser.Name = "buttonTransferToAnotherUser";
+            this.buttonTransferToAnotherUser.Size = new System.Drawing.Size(224, 23);
+            this.buttonTransferToAnotherUser.TabIndex = 8;
+            this.buttonTransferToAnotherUser.Text = "Transfer to another user\'s account";
+            this.buttonTransferToAnotherUser.UseVisualStyleBackColor = true;
+            this.buttonTransferToAnotherUser.Click += new System.EventHandler(this.buttonTransferToAnotherUser_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(33, 18);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(75, 16);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Accounts:";
+            // 
+            // dataGridViewAccountsWithoutDeposits
+            // 
+            this.dataGridViewAccountsWithoutDeposits.AllowUserToAddRows = false;
+            this.dataGridViewAccountsWithoutDeposits.AllowUserToDeleteRows = false;
+            this.dataGridViewAccountsWithoutDeposits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewAccountsWithoutDeposits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAccountsWithoutDeposits.Location = new System.Drawing.Point(6, 46);
+            this.dataGridViewAccountsWithoutDeposits.MultiSelect = false;
+            this.dataGridViewAccountsWithoutDeposits.Name = "dataGridViewAccountsWithoutDeposits";
+            this.dataGridViewAccountsWithoutDeposits.ReadOnly = true;
+            this.dataGridViewAccountsWithoutDeposits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewAccountsWithoutDeposits.Size = new System.Drawing.Size(507, 141);
+            this.dataGridViewAccountsWithoutDeposits.TabIndex = 10;
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 419);
+            this.ClientSize = new System.Drawing.Size(724, 405);
             this.Controls.Add(this.tabControl);
             this.Name = "UserForm";
             this.Text = "User";
@@ -339,6 +406,9 @@
             this.tabPageDepositsAndAccounts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDeposits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).EndInit();
+            this.tabPageMoneyTransfer.ResumeLayout(false);
+            this.tabPageMoneyTransfer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccountsWithoutDeposits)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,5 +438,10 @@
         private System.Windows.Forms.Button buttonTransfer;
         private System.Windows.Forms.Button buttonCloseAccount;
         private System.Windows.Forms.Button buttonOpenAccount;
+        private System.Windows.Forms.TabPage tabPageMoneyTransfer;
+        private System.Windows.Forms.DataGridView dataGridViewAccountsWithoutDeposits;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button buttonTransferToAnotherUser;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

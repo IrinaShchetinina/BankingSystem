@@ -21,7 +21,6 @@ namespace BankingSystem.Forms
             InitializeComponent();
             this.userContext = userContext;
             this.user = user;
-            //this.user.data_of_user = userContext.FindUserDataByLogin(user.Login);
         }
 
         private void UserForm_Load(object sender, EventArgs e)
@@ -40,9 +39,32 @@ namespace BankingSystem.Forms
             dataGridViewAccounts.Columns[4].Visible = false;
             dataGridViewAccounts.Columns[5].Visible = false;
 
+            viewUserDeposits();
+
+            BindingList<bank_account> blAccountsWithoutDeposits = new BindingList<bank_account>(user.bank_account.Where(a => a.bank_deposit == null).ToList());
+            dataGridViewAccountsWithoutDeposits.DataSource = blAccountsWithoutDeposits;
+            dataGridViewAccountsWithoutDeposits.Columns[0].Visible = false;
+            dataGridViewAccountsWithoutDeposits.Columns[2].Visible = false;
+            dataGridViewAccountsWithoutDeposits.Columns[4].Visible = false;
+            dataGridViewAccountsWithoutDeposits.Columns[5].Visible = false;
+
+            List<bank_deposit> userDeposits = user.bank_account.Where(a => a.bank_deposit != null).Select(d => d.bank_deposit).ToList();
+            foreach(bank_deposit deposit in userDeposits)
+            {
+                if (AccountsAndDepositsRegulator.InterestAccrual(deposit))
+                {
+                    userContext.DeleteBankDeposit(deposit);
+                    MessageBox.Show("The deposit period has expired! Deposit is closed! The account number of the deposit: " + deposit.bank_account.Number);
+                }
+                userContext.UpdateUser(user);
+                viewUserDeposits();
+            }
+        }
+
+        private void viewUserDeposits()
+        {
             dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
             dataGridViewDeposits.Columns[0].Visible = false;
-            dataGridViewDeposits.Columns[1].Visible = false;
             dataGridViewDeposits.Columns[2].Visible = false;
             dataGridViewDeposits.Columns[5].Visible = false;
             dataGridViewDeposits.Columns[6].Visible = false;
@@ -77,32 +99,62 @@ namespace BankingSystem.Forms
 
         private void buttonTransfer_Click(object sender, EventArgs e)
         {
-            MoneyTransferForm transferForm = new MoneyTransferForm(user.bank_account.Select(a => a.Number).ToArray(), false);
-            if(transferForm.ShowDialog() == DialogResult.OK)
+            transferMoney(false);
+            dataGridViewAccounts.Refresh();
+        }
+
+        private void transferMoney(bool toAnotherUser)
+        {
+            object[] accounts;
+
+            if (toAnotherUser)
+                accounts = user.bank_account.Where(a => a.bank_deposit == null).Select(a => a.Number).ToArray();
+            else 
+                accounts = user.bank_account.Select(a => a.Number).ToArray();
+            MoneyTransferForm transferForm = new MoneyTransferForm(accounts, toAnotherUser);
+            if (transferForm.ShowDialog() == DialogResult.OK)
             {
                 string numberAccountFrom = transferForm.comboBoxFrom.Text;
-                string numberAccountTo = transferForm.comboBoxTo.Text;
+                string numberAccountTo;
+                if (toAnotherUser)
+                    numberAccountTo = transferForm.textBoxToAccount.Text.Trim();
+                else
+                    numberAccountTo = transferForm.comboBoxTo.Text;
 
                 int sum;
 
                 if (numberAccountFrom != null && numberAccountTo != null)
                 {
-                    if(transferForm.textBoxSum != null && int.TryParse(transferForm.textBoxSum.Text, out sum))
+                    if (transferForm.textBoxSum != null && int.TryParse(transferForm.textBoxSum.Text, out sum))
                     {
                         bank_account accountFrom = user.bank_account.Where(a => a.Number == numberAccountFrom).First();
-                        bank_account accountTo = user.bank_account.Where(a => a.Number == numberAccountTo).First();
-
-                        if(AccountsAndDepositsRegulator.TransferMoney(accountFrom, accountTo, sum))
+                        bank_account accountTo;
+                        if (toAnotherUser)
+                            accountTo = userContext.GetBankAccountsToList().Where(a => a.Number == numberAccountTo).FirstOrDefault();
+                        else
+                            accountTo = user.bank_account.Where(a => a.Number == numberAccountTo).FirstOrDefault();
+                        if(accountTo != null)
                         {
-                            userContext.UpdateUser(user);
-                            MessageBox.Show("The money was transferred!");
+                            if (AccountsAndDepositsRegulator.TransferMoney(accountFrom, accountTo, sum))
+                            {
+                                userContext.UpdateUser(user);
+                                MessageBox.Show("The money was transferred!");
+                            }
                         }
+                        else
+                        {
+                            if (toAnotherUser)
+                                MessageBox.Show("The payee account entered is not exist!");
+                            else
+                                MessageBox.Show("The account is not selected!");
+                        }
+                            
                     }
                     else
-                        MessageBox.Show("The entered sum is incorrect!");
+                        MessageBox.Show("The sum entered is not correct!");
                 }
                 else
-                    MessageBox.Show("The account is not selected!");   
+                    MessageBox.Show("The account is not selected!");
             }
         }
 
@@ -127,7 +179,7 @@ namespace BankingSystem.Forms
                             depositAccount.user = user;
                             user.bank_account.Add(depositAccount);
                             userContext.UpdateUser(user);
-                            dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
+                            viewUserDeposits();
                             MessageBox.Show("Deposit is opened!");
                         }   
                     }
@@ -148,7 +200,8 @@ namespace BankingSystem.Forms
                 if(AccountsAndDepositsRegulator.CloseDepositCheck(closingDeposit))
                 {
                     userContext.DeleteBankDeposit(closingDeposit);
-                    dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
+                    userContext.UpdateUser(user);
+                    viewUserDeposits();
                     MessageBox.Show("Deposit is closed!");
                 }
                 else
@@ -170,6 +223,12 @@ namespace BankingSystem.Forms
             }
             else
                 MessageBox.Show("Deposit is not selected!");
+        }
+
+        private void buttonTransferToAnotherUser_Click(object sender, EventArgs e)
+        {
+            transferMoney(true);
+            dataGridViewAccountsWithoutDeposits.Refresh();
         }
     }
 }

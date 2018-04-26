@@ -30,6 +30,11 @@ namespace BankingSystem
             return dbContext.data_of_user.ToList();
         }
 
+        protected List<bank_account> getBankAccountsToList()
+        {
+            return dbContext.bank_account.ToList();
+        }
+
         protected List<bank_account> getBankAccountsToList(string userLogin)
         {
             return dbContext.bank_account.Where(a => a.User_login == userLogin).ToList();
@@ -37,7 +42,7 @@ namespace BankingSystem
 
         protected List<bank_deposit> getBankDepositsToList(string userLogin)
         {
-            return dbContext.bank_deposit.Where(d => d.bank_account.User_login == userLogin).ToList(); //??? или искать сначала счета и потом выбирать из них вклады
+            return dbContext.bank_deposit.Where(d => d.bank_account.User_login == userLogin).ToList();
         }
 
         protected List<credit> getCreditsToList(string userLogin)
