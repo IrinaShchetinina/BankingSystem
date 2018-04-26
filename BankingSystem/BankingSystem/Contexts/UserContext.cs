@@ -33,6 +33,11 @@ namespace BankingSystem
             return getUsersDataToList();
         }
 
+        public List<bank_account> GetBankAccountsToList()
+        {
+            return getBankAccountsToList();
+        }
+
         public BindingList<bank_account> GetBankAccountsToBindingList(string userLogin)
         {
             BindingList<bank_account> bl = new BindingList<bank_account>(getBankAccountsToList(userLogin));

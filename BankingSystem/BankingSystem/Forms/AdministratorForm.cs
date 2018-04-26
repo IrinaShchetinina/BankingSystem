@@ -59,7 +59,14 @@ namespace BankingSystem.Forms
                     {
                         createdUser.Password = pass;
                         if(userContext.AddUser(createdUser))
-                            MessageBox.Show("User added!");
+                        textBoxLogin.Clear();
+                        checkBoxAdmin.CheckState = CheckState.Unchecked;
+                        textBoxSurname.Clear();
+                        textBoxName.Clear();
+                        textBoxPatronymic.Clear();
+                        textBoxPassSer.Clear();
+                        textBoxPassNum.Clear();
+                        MessageBox.Show("User added!");
                     }
                     else
                         MessageBox.Show("A password is not entered!!! User addition canceled!");
