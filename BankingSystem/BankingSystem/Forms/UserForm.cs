@@ -39,7 +39,7 @@ namespace BankingSystem.Forms
             dataGridViewAccounts.Columns[4].Visible = false;
             dataGridViewAccounts.Columns[5].Visible = false;
 
-            viewDeposits();
+            viewUserDeposits();
 
             BindingList<bank_account> blAccountsWithoutDeposits = new BindingList<bank_account>(user.bank_account.Where(a => a.bank_deposit == null).ToList());
             dataGridViewAccountsWithoutDeposits.DataSource = blAccountsWithoutDeposits;
@@ -47,9 +47,21 @@ namespace BankingSystem.Forms
             dataGridViewAccountsWithoutDeposits.Columns[2].Visible = false;
             dataGridViewAccountsWithoutDeposits.Columns[4].Visible = false;
             dataGridViewAccountsWithoutDeposits.Columns[5].Visible = false;
+
+            List<bank_deposit> userDeposits = user.bank_account.Where(a => a.bank_deposit != null).Select(d => d.bank_deposit).ToList();
+            foreach(bank_deposit deposit in userDeposits)
+            {
+                if (AccountsAndDepositsRegulator.InterestAccrual(deposit))
+                {
+                    userContext.DeleteBankDeposit(deposit);
+                    MessageBox.Show("The deposit period has expired! Deposit is closed!");
+                }
+                userContext.UpdateUser(user);
+                viewUserDeposits();
+            }
         }
 
-        private void viewDeposits()
+        private void viewUserDeposits()
         {
             dataGridViewDeposits.DataSource = userContext.GetBankDepositsToBindingList(user.Login);
             dataGridViewDeposits.Columns[0].Visible = false;
@@ -167,7 +179,7 @@ namespace BankingSystem.Forms
                             depositAccount.user = user;
                             user.bank_account.Add(depositAccount);
                             userContext.UpdateUser(user);
-                            viewDeposits();
+                            viewUserDeposits();
                             MessageBox.Show("Deposit is opened!");
                         }   
                     }
@@ -188,7 +200,8 @@ namespace BankingSystem.Forms
                 if(AccountsAndDepositsRegulator.CloseDepositCheck(closingDeposit))
                 {
                     userContext.DeleteBankDeposit(closingDeposit);
-                    viewDeposits();
+                    userContext.UpdateUser(user);
+                    viewUserDeposits();
                     MessageBox.Show("Deposit is closed!");
                 }
                 else

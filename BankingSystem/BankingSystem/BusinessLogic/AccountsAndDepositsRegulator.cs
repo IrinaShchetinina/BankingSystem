@@ -84,6 +84,48 @@ namespace BankingSystem.BusinessLogic
             return null;
         }
 
+        internal static bool InterestAccrual(bank_deposit deposit) //возвращает истёк ли срок
+        {
+            bool expired = false;
+            var total = deposit.bank_account.Sum;
+            double amountOfaccrual = 0;
+            double sumStart = 0; //от чего начисляем проценты
+
+            int mouths = 0; //сколько месяцев прошло с момента открытия
+            sumStart = deposit.Start_sum;
+            if (deposit.Expiry_date.CompareTo(DateTime.Now.Date) <= 0)
+            {
+                mouths = deposit.deposite_type.Term;
+                expired = true;
+            }
+            else
+            {
+                DateTime tmp = deposit.Opening_date;
+                while (tmp < DateTime.Now.Date)
+                {
+                    mouths++;
+                    tmp = tmp.AddMonths(1);
+                }
+            }
+
+            if (deposit.deposite_type.Capitalization)
+            {
+                int mouth; //месяц с момента открытия
+                for(mouth = 1; mouth <= mouths; mouth++) //начислить проценты за каждый месяц
+                {
+                    amountOfaccrual += (sumStart / 100) * (deposit.deposite_type.Interest_rate / 12);
+                    sumStart += amountOfaccrual;
+                }
+            }
+            else
+            {
+                amountOfaccrual = (sumStart / 100) * (deposit.deposite_type.Interest_rate / 12) * mouths;
+            }
+            total += Convert.ToInt32(amountOfaccrual);
+            deposit.bank_account.Sum = total;
+            return expired;
+        }
+
         internal static bool CloseDepositCheck(bank_deposit closingDeposit)
         {
             if((closingDeposit.deposite_type.Early_closure) | (closingDeposit.Expiry_date.CompareTo(DateTime.Now.Date) <= 0))
