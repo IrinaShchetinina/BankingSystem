@@ -54,7 +54,7 @@ namespace BankingSystem.Forms
                 if (AccountsAndDepositsRegulator.InterestAccrual(deposit))
                 {
                     userContext.DeleteBankDeposit(deposit);
-                    MessageBox.Show("The deposit period has expired! Deposit is closed!");
+                    MessageBox.Show("The deposit period has expired! Deposit is closed! The account number of the deposit: " + deposit.bank_account.Number);
                 }
                 userContext.UpdateUser(user);
                 viewUserDeposits();
