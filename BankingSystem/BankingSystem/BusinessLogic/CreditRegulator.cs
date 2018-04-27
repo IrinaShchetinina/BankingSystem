@@ -42,8 +42,19 @@ namespace BankingSystem.BusinessLogic
                 MessageBox.Show("You do not have enough money to pay your credit. Please selet another account");
                 return;
             }
+            else if(sumForPay==credit.credit_type.Sum)
+            {
+                MessageBox.Show("You enter sum which is equal your credit sum. If you want to do early payment for credit, please select option for early payment");
+                return;
+            }
+            else if(sumForPay>credit.credit_type.Sum)
+            {
+                MessageBox.Show("You enter sum which is more than credit sum. Please enter another sum");
+                return;
+            }
                 account.Sum = account.Sum - sumForPay;
                 credit.Paid_sum = credit.Paid_sum + sumForPay;
+            
         }
         public static double SumForEarlyPayment(credit credit)
         {
