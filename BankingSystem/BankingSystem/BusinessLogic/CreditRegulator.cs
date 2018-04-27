@@ -28,32 +28,33 @@ namespace BankingSystem.BusinessLogic
             }
             else
             {
-                credit.credit_type.Sum = credit.credit_type.Sum - credit.Paid_sum;
-                recommendedSum = (credit.credit_type.Sum * interestRate / 100) / 12 + monthPayment;
+                var newCreditSum = credit.credit_type.Sum - credit.Paid_sum;
+                recommendedSum = Convert.ToDouble((newCreditSum * interestRate / 100) / 12 + monthPayment);
             }
             return recommendedSum;
         }
 
-        public static void PayForCredit(bank_account account, int sumForPay, credit credit)
+        public static void CheckPayForCredit(bank_account account, int sumForPay, credit credit)
         {
-            int sumTotal = Convert.ToInt32(account.Sum);
-            int paidSum = Convert.ToInt32(credit.Paid_sum);
-            if(sumTotal<sumForPay)
+            var paidSum = credit.Paid_sum;
+            if(account.Sum < sumForPay)
             {
                 MessageBox.Show("You do not have enough money to pay your credit. Please selet another account");
+                return;
             }
-            else
-            {
-                if (sumForPay<recommendedSumForPay)
-                {
-                    MessageBox.Show("You can not pay less than the recommended amount. Please enter another sum for paid");
-                }
-                account.Sum = sumTotal - sumForPay;
-                credit.Paid_sum = paidSum + sumForPay;
-            }
-
+                account.Sum = account.Sum - sumForPay;
+                credit.Paid_sum = credit.Paid_sum + sumForPay;
+        }
+        public static double SumForEarlyPayment(credit credit)
+        {
+            double sumForEarlyPayment = 0;
+            return sumForEarlyPayment = Convert.ToDouble(((credit.credit_type.Sum - credit.Paid_sum) * credit.credit_type.Interest_rate / 100) / 12 + (credit.credit_type.Sum - credit.Paid_sum));
         }
 
-
     }
+
+
+
 }
+
+
