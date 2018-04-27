@@ -22,7 +22,7 @@ namespace BankingSystem
     
         public int id { get; set; }
         public double Interest_rate { get; set; }
-        public int Sum { get; set; }
+        public double Sum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<credit> credit { get; set; }

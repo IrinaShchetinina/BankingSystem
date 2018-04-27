@@ -7,36 +7,37 @@ using System.Windows.Forms;
 
 namespace BankingSystem.BusinessLogic
 {
-    class CreditRegulator
+    public static class CreditRegulator
     {
 
-       private int recommendedSumForPay;
-        public int recommendedSumOfDebt(bank_account account, credit_type typeCredit, credit credit) // рекомендуемая сумма долга
+        public static double CalculateRecommendedSumOfDebt(bank_account account, credit credit) // рекомендуемая сумма долга
         {
-            int recommendedSum = 0;
-            int sumOfDebt = typeCredit.Sum;
-            double interestRate = typeCredit.Interest_rate;
-            int timeOfcredit = 6; //Convert.ToInt32((credit.Expiry_date - credit.Opening_date).TotalDays / 30); Не знаю как посчитать количество месяцев
-            int monthPayment = sumOfDebt / timeOfcredit; // ежемесяный платеж без учта процентов
-            if (credit.Paid_sum == 0 || credit.Paid_sum == null)
+            double recommendedSum = 0;
+            double interestRate = credit.credit_type.Interest_rate;
+            int mouths = 0;
+            DateTime tmp = credit.Opening_date;
+            while (tmp < credit.Expiry_date)
             {
-                recommendedSum = Convert.ToInt32((sumOfDebt * interestRate / 100) / 12 + monthPayment);
-                recommendedSumForPay = recommendedSum;
-                return recommendedSumForPay;
+                mouths++;
+                tmp = tmp.AddMonths(1);
+            }
+            double monthPayment = credit.credit_type.Sum / mouths; // ежемесяный платеж без учта процентов
+            if (credit.Paid_sum == 0)
+            {
+                recommendedSum = (credit.credit_type.Sum * interestRate / 100) / 12 + monthPayment;
             }
             else
             {
-                sumOfDebt = typeCredit.Sum - credit.Paid_sum.Value;
-                recommendedSum = Convert.ToInt32((sumOfDebt * interestRate / 100) / 12 + monthPayment);
-                recommendedSumForPay = recommendedSum;
-                return recommendedSumForPay;
+                credit.credit_type.Sum = credit.credit_type.Sum - credit.Paid_sum;
+                recommendedSum = (credit.credit_type.Sum * interestRate / 100) / 12 + monthPayment;
             }
+            return recommendedSum;
         }
 
-        public void PayForCredit(bank_account sum, int sumForPay, credit paid)
+        public static void PayForCredit(bank_account account, int sumForPay, credit credit)
         {
-            int sumTotal = Convert.ToInt32(sum.Sum);
-            int paidSum = Convert.ToInt32(paid.Paid_sum);
+            int sumTotal = Convert.ToInt32(account.Sum);
+            int paidSum = Convert.ToInt32(credit.Paid_sum);
             if(sumTotal<sumForPay)
             {
                 MessageBox.Show("You do not have enough money to pay your credit. Please selet another account");
@@ -47,8 +48,8 @@ namespace BankingSystem.BusinessLogic
                 {
                     MessageBox.Show("You can not pay less than the recommended amount. Please enter another sum for paid");
                 }
-                sum.Sum = sumTotal - sumForPay;
-                paid.Paid_sum = paidSum + sumForPay;
+                account.Sum = sumTotal - sumForPay;
+                credit.Paid_sum = paidSum + sumForPay;
             }
 
         }

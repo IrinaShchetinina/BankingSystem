@@ -12,14 +12,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Number" Type="mediumtext" Nullable="false" />
           <Property Name="User_login" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Sum" Type="int" />
+          <Property Name="Sum" Type="double" />
         </EntityType>
         <EntityType Name="bank_deposit">
           <Key>
             <PropertyRef Name="Account_id" />
           </Key>
           <Property Name="Account_id" Type="int" Nullable="false" />
-          <Property Name="Start_sum" Type="int" Nullable="false" />
+          <Property Name="Start_sum" Type="double" Nullable="false" />
           <Property Name="Deposite_type_id" Type="int" Nullable="false" />
           <Property Name="Opening_date" Type="date" Nullable="false" />
           <Property Name="Expiry_date" Type="date" Nullable="false" />
@@ -33,7 +33,7 @@
           <Property Name="Credit_type_id" Type="int" Nullable="false" />
           <Property Name="Opening_date" Type="date" Nullable="false" />
           <Property Name="Expiry_date" Type="date" Nullable="false" />
-          <Property Name="Paid_sum" Type="int" />
+          <Property Name="Paid_sum" Type="double" />
         </EntityType>
         <EntityType Name="credit_type">
           <Key>
@@ -41,7 +41,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Interest_rate" Type="double" Nullable="false" />
-          <Property Name="Sum" Type="int" Nullable="false" />
+          <Property Name="Sum" Type="double" Nullable="false" />
         </EntityType>
         <EntityType Name="data_of_user">
           <Key>
@@ -201,7 +201,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Number" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="User_login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Sum" Type="Int32" />
+          <Property Name="Sum" Type="Double" />
           <NavigationProperty Name="bank_deposit" Relationship="Self.fk_account_id" FromRole="bank_account" ToRole="bank_deposit" />
           <NavigationProperty Name="user" Relationship="Self.fk_us_log" FromRole="bank_account" ToRole="user" />
         </EntityType>
@@ -210,7 +210,7 @@
             <PropertyRef Name="Account_id" />
           </Key>
           <Property Name="Account_id" Type="Int32" Nullable="false" />
-          <Property Name="Start_sum" Type="Int32" Nullable="false" />
+          <Property Name="Start_sum" Type="Double" Nullable="false" />
           <Property Name="Deposite_type_id" Type="Int32" Nullable="false" />
           <Property Name="Opening_date" Type="DateTime" Nullable="false" />
           <Property Name="Expiry_date" Type="DateTime" Nullable="false" />
@@ -226,7 +226,7 @@
           <Property Name="Credit_type_id" Type="Int32" Nullable="false" />
           <Property Name="Opening_date" Type="DateTime" Nullable="false" />
           <Property Name="Expiry_date" Type="DateTime" Nullable="false" />
-          <Property Name="Paid_sum" Type="Int32" />
+          <Property Name="Paid_sum" Type="Double" />
           <NavigationProperty Name="credit_type" Relationship="Self.fk_credit_type_id" FromRole="credit" ToRole="credit_type" />
           <NavigationProperty Name="user" Relationship="Self.fk_us_login" FromRole="credit" ToRole="user" />
         </EntityType>
@@ -236,7 +236,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Interest_rate" Type="Double" Nullable="false" />
-          <Property Name="Sum" Type="Int32" Nullable="false" />
+          <Property Name="Sum" Type="Double" Nullable="false" />
           <NavigationProperty Name="credit" Relationship="Self.fk_credit_type_id" FromRole="credit_type" ToRole="credit" />
         </EntityType>
         <EntityType Name="data_of_user">

@@ -121,7 +121,7 @@ namespace BankingSystem.BusinessLogic
             {
                 amountOfaccrual = (sumStart / 100) * (deposit.deposite_type.Interest_rate / 12) * mouths;
             }
-            total += Convert.ToInt32(amountOfaccrual);
+            total += amountOfaccrual;
             deposit.bank_account.Sum = total;
             return expired;
         }
