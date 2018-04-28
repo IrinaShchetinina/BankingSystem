@@ -55,7 +55,11 @@
             this.dataGridViewAccountsWithoutDeposits = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.buttonTransferToAnotherUser = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPageCredits = new System.Windows.Forms.TabPage();
+            this.buttonMakePayment = new System.Windows.Forms.Button();
+            this.buttonViewInfoAboutCredit = new System.Windows.Forms.Button();
+            this.dataGridViewCredits = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.tabPagePersonalData.SuspendLayout();
             this.tabPageDepositsAndAccounts.SuspendLayout();
@@ -63,6 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccounts)).BeginInit();
             this.tabPageMoneyTransfer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccountsWithoutDeposits)).BeginInit();
+            this.tabPageCredits.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCredits)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -70,13 +76,12 @@
             this.tabControl.Controls.Add(this.tabPagePersonalData);
             this.tabControl.Controls.Add(this.tabPageDepositsAndAccounts);
             this.tabControl.Controls.Add(this.tabPageMoneyTransfer);
-            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPageCredits);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(965, 498);
+            this.tabControl.Size = new System.Drawing.Size(724, 405);
             this.tabControl.TabIndex = 1;
             // 
             // tabPagePersonalData
@@ -91,11 +96,10 @@
             this.tabPagePersonalData.Controls.Add(this.label3);
             this.tabPagePersonalData.Controls.Add(this.label2);
             this.tabPagePersonalData.Controls.Add(this.label1);
-            this.tabPagePersonalData.Location = new System.Drawing.Point(4, 25);
-            this.tabPagePersonalData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPagePersonalData.Location = new System.Drawing.Point(4, 22);
             this.tabPagePersonalData.Name = "tabPagePersonalData";
-            this.tabPagePersonalData.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPagePersonalData.Size = new System.Drawing.Size(957, 469);
+            this.tabPagePersonalData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPagePersonalData.Size = new System.Drawing.Size(716, 379);
             this.tabPagePersonalData.TabIndex = 0;
             this.tabPagePersonalData.Text = "Personal data";
             this.tabPagePersonalData.UseVisualStyleBackColor = true;
@@ -104,10 +108,9 @@
             // 
             this.labelPassNum.AutoSize = true;
             this.labelPassNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPassNum.Location = new System.Drawing.Point(305, 246);
-            this.labelPassNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPassNum.Location = new System.Drawing.Point(229, 200);
             this.labelPassNum.Name = "labelPassNum";
-            this.labelPassNum.Size = new System.Drawing.Size(29, 20);
+            this.labelPassNum.Size = new System.Drawing.Size(25, 16);
             this.labelPassNum.TabIndex = 9;
             this.labelPassNum.Text = "no";
             // 
@@ -115,10 +118,9 @@
             // 
             this.labelPassSer.AutoSize = true;
             this.labelPassSer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPassSer.Location = new System.Drawing.Point(305, 196);
-            this.labelPassSer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPassSer.Location = new System.Drawing.Point(229, 159);
             this.labelPassSer.Name = "labelPassSer";
-            this.labelPassSer.Size = new System.Drawing.Size(29, 20);
+            this.labelPassSer.Size = new System.Drawing.Size(25, 16);
             this.labelPassSer.TabIndex = 8;
             this.labelPassSer.Text = "no";
             // 
@@ -126,10 +128,9 @@
             // 
             this.labelPatronymic.AutoSize = true;
             this.labelPatronymic.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPatronymic.Location = new System.Drawing.Point(305, 142);
-            this.labelPatronymic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPatronymic.Location = new System.Drawing.Point(229, 115);
             this.labelPatronymic.Name = "labelPatronymic";
-            this.labelPatronymic.Size = new System.Drawing.Size(29, 20);
+            this.labelPatronymic.Size = new System.Drawing.Size(25, 16);
             this.labelPatronymic.TabIndex = 7;
             this.labelPatronymic.Text = "no";
             // 
@@ -137,10 +138,9 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelName.Location = new System.Drawing.Point(305, 87);
-            this.labelName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelName.Location = new System.Drawing.Point(229, 71);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(29, 20);
+            this.labelName.Size = new System.Drawing.Size(25, 16);
             this.labelName.TabIndex = 6;
             this.labelName.Text = "no";
             // 
@@ -148,10 +148,9 @@
             // 
             this.labelSurname.AutoSize = true;
             this.labelSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelSurname.Location = new System.Drawing.Point(305, 32);
-            this.labelSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSurname.Location = new System.Drawing.Point(229, 26);
             this.labelSurname.Name = "labelSurname";
-            this.labelSurname.Size = new System.Drawing.Size(29, 20);
+            this.labelSurname.Size = new System.Drawing.Size(25, 16);
             this.labelSurname.TabIndex = 5;
             this.labelSurname.Text = "no";
             // 
@@ -159,10 +158,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(36, 246);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(27, 200);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(158, 20);
+            this.label5.Size = new System.Drawing.Size(129, 16);
             this.label5.TabIndex = 4;
             this.label5.Text = "Passport number:";
             // 
@@ -170,10 +168,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(36, 196);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(27, 159);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(148, 20);
+            this.label4.Size = new System.Drawing.Size(121, 16);
             this.label4.TabIndex = 3;
             this.label4.Text = "Passport series:";
             // 
@@ -181,10 +178,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(36, 142);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(27, 115);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 20);
+            this.label3.Size = new System.Drawing.Size(89, 16);
             this.label3.TabIndex = 2;
             this.label3.Text = "Patronymic:";
             // 
@@ -192,10 +188,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(36, 87);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(27, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 20);
+            this.label2.Size = new System.Drawing.Size(53, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "Name:";
             // 
@@ -203,10 +198,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(36, 32);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(27, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 20);
+            this.label1.Size = new System.Drawing.Size(73, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Surname:";
             // 
@@ -222,11 +216,10 @@
             this.tabPageDepositsAndAccounts.Controls.Add(this.dataGridViewAccounts);
             this.tabPageDepositsAndAccounts.Controls.Add(this.label7);
             this.tabPageDepositsAndAccounts.Controls.Add(this.label6);
-            this.tabPageDepositsAndAccounts.Location = new System.Drawing.Point(4, 25);
-            this.tabPageDepositsAndAccounts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDepositsAndAccounts.Location = new System.Drawing.Point(4, 22);
             this.tabPageDepositsAndAccounts.Name = "tabPageDepositsAndAccounts";
-            this.tabPageDepositsAndAccounts.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageDepositsAndAccounts.Size = new System.Drawing.Size(957, 469);
+            this.tabPageDepositsAndAccounts.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageDepositsAndAccounts.Size = new System.Drawing.Size(716, 379);
             this.tabPageDepositsAndAccounts.TabIndex = 1;
             this.tabPageDepositsAndAccounts.Text = "Deposits & accounts";
             this.tabPageDepositsAndAccounts.UseVisualStyleBackColor = true;
@@ -234,10 +227,9 @@
             // buttonViewDepositInfo
             // 
             this.buttonViewDepositInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonViewDepositInfo.Location = new System.Drawing.Point(708, 279);
-            this.buttonViewDepositInfo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonViewDepositInfo.Location = new System.Drawing.Point(531, 227);
             this.buttonViewDepositInfo.Name = "buttonViewDepositInfo";
-            this.buttonViewDepositInfo.Size = new System.Drawing.Size(236, 28);
+            this.buttonViewDepositInfo.Size = new System.Drawing.Size(177, 23);
             this.buttonViewDepositInfo.TabIndex = 10;
             this.buttonViewDepositInfo.Text = "View info about the deposit";
             this.buttonViewDepositInfo.UseVisualStyleBackColor = true;
@@ -246,10 +238,9 @@
             // buttonCloseDeposit
             // 
             this.buttonCloseDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCloseDeposit.Location = new System.Drawing.Point(759, 425);
-            this.buttonCloseDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCloseDeposit.Location = new System.Drawing.Point(569, 345);
             this.buttonCloseDeposit.Name = "buttonCloseDeposit";
-            this.buttonCloseDeposit.Size = new System.Drawing.Size(148, 28);
+            this.buttonCloseDeposit.Size = new System.Drawing.Size(111, 23);
             this.buttonCloseDeposit.TabIndex = 9;
             this.buttonCloseDeposit.Text = "Close deposit";
             this.buttonCloseDeposit.UseVisualStyleBackColor = true;
@@ -258,10 +249,9 @@
             // buttonOpenDeposit
             // 
             this.buttonOpenDeposit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonOpenDeposit.Location = new System.Drawing.Point(759, 354);
-            this.buttonOpenDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonOpenDeposit.Location = new System.Drawing.Point(569, 288);
             this.buttonOpenDeposit.Name = "buttonOpenDeposit";
-            this.buttonOpenDeposit.Size = new System.Drawing.Size(148, 28);
+            this.buttonOpenDeposit.Size = new System.Drawing.Size(111, 23);
             this.buttonOpenDeposit.TabIndex = 8;
             this.buttonOpenDeposit.Text = "Open deposit";
             this.buttonOpenDeposit.UseVisualStyleBackColor = true;
@@ -270,10 +260,9 @@
             // buttonTransfer
             // 
             this.buttonTransfer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonTransfer.Location = new System.Drawing.Point(708, 202);
-            this.buttonTransfer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTransfer.Location = new System.Drawing.Point(531, 164);
             this.buttonTransfer.Name = "buttonTransfer";
-            this.buttonTransfer.Size = new System.Drawing.Size(236, 28);
+            this.buttonTransfer.Size = new System.Drawing.Size(177, 23);
             this.buttonTransfer.TabIndex = 7;
             this.buttonTransfer.Text = "Transfer between accounts";
             this.buttonTransfer.UseVisualStyleBackColor = true;
@@ -282,10 +271,9 @@
             // buttonCloseAccount
             // 
             this.buttonCloseAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCloseAccount.Location = new System.Drawing.Point(759, 132);
-            this.buttonCloseAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonCloseAccount.Location = new System.Drawing.Point(569, 107);
             this.buttonCloseAccount.Name = "buttonCloseAccount";
-            this.buttonCloseAccount.Size = new System.Drawing.Size(148, 28);
+            this.buttonCloseAccount.Size = new System.Drawing.Size(111, 23);
             this.buttonCloseAccount.TabIndex = 6;
             this.buttonCloseAccount.Text = "Close account";
             this.buttonCloseAccount.UseVisualStyleBackColor = true;
@@ -294,10 +282,9 @@
             // buttonOpenAccount
             // 
             this.buttonOpenAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonOpenAccount.Location = new System.Drawing.Point(759, 57);
-            this.buttonOpenAccount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonOpenAccount.Location = new System.Drawing.Point(569, 46);
             this.buttonOpenAccount.Name = "buttonOpenAccount";
-            this.buttonOpenAccount.Size = new System.Drawing.Size(148, 28);
+            this.buttonOpenAccount.Size = new System.Drawing.Size(111, 23);
             this.buttonOpenAccount.TabIndex = 5;
             this.buttonOpenAccount.Text = "Open account";
             this.buttonOpenAccount.UseVisualStyleBackColor = true;
@@ -309,13 +296,12 @@
             this.dataGridViewDeposits.AllowUserToDeleteRows = false;
             this.dataGridViewDeposits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewDeposits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewDeposits.Location = new System.Drawing.Point(11, 279);
-            this.dataGridViewDeposits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewDeposits.Location = new System.Drawing.Point(8, 227);
             this.dataGridViewDeposits.MultiSelect = false;
             this.dataGridViewDeposits.Name = "dataGridViewDeposits";
             this.dataGridViewDeposits.ReadOnly = true;
             this.dataGridViewDeposits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewDeposits.Size = new System.Drawing.Size(676, 174);
+            this.dataGridViewDeposits.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewDeposits.TabIndex = 4;
             // 
             // dataGridViewAccounts
@@ -324,23 +310,21 @@
             this.dataGridViewAccounts.AllowUserToDeleteRows = false;
             this.dataGridViewAccounts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAccounts.Location = new System.Drawing.Point(8, 57);
-            this.dataGridViewAccounts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewAccounts.Location = new System.Drawing.Point(6, 46);
             this.dataGridViewAccounts.MultiSelect = false;
             this.dataGridViewAccounts.Name = "dataGridViewAccounts";
             this.dataGridViewAccounts.ReadOnly = true;
             this.dataGridViewAccounts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAccounts.Size = new System.Drawing.Size(676, 174);
+            this.dataGridViewAccounts.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewAccounts.TabIndex = 3;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(59, 245);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(44, 199);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 20);
+            this.label7.Size = new System.Drawing.Size(74, 16);
             this.label7.TabIndex = 2;
             this.label7.Text = "Deposits:";
             // 
@@ -348,10 +332,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(59, 25);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(44, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 20);
+            this.label6.Size = new System.Drawing.Size(75, 16);
             this.label6.TabIndex = 1;
             this.label6.Text = "Accounts:";
             // 
@@ -360,11 +343,10 @@
             this.tabPageMoneyTransfer.Controls.Add(this.dataGridViewAccountsWithoutDeposits);
             this.tabPageMoneyTransfer.Controls.Add(this.label8);
             this.tabPageMoneyTransfer.Controls.Add(this.buttonTransferToAnotherUser);
-            this.tabPageMoneyTransfer.Location = new System.Drawing.Point(4, 25);
-            this.tabPageMoneyTransfer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageMoneyTransfer.Location = new System.Drawing.Point(4, 22);
             this.tabPageMoneyTransfer.Name = "tabPageMoneyTransfer";
-            this.tabPageMoneyTransfer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPageMoneyTransfer.Size = new System.Drawing.Size(957, 469);
+            this.tabPageMoneyTransfer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageMoneyTransfer.Size = new System.Drawing.Size(716, 379);
             this.tabPageMoneyTransfer.TabIndex = 2;
             this.tabPageMoneyTransfer.Text = "Money transfer";
             this.tabPageMoneyTransfer.UseVisualStyleBackColor = true;
@@ -375,57 +357,101 @@
             this.dataGridViewAccountsWithoutDeposits.AllowUserToDeleteRows = false;
             this.dataGridViewAccountsWithoutDeposits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewAccountsWithoutDeposits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewAccountsWithoutDeposits.Location = new System.Drawing.Point(8, 57);
-            this.dataGridViewAccountsWithoutDeposits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewAccountsWithoutDeposits.Location = new System.Drawing.Point(6, 46);
             this.dataGridViewAccountsWithoutDeposits.MultiSelect = false;
             this.dataGridViewAccountsWithoutDeposits.Name = "dataGridViewAccountsWithoutDeposits";
             this.dataGridViewAccountsWithoutDeposits.ReadOnly = true;
             this.dataGridViewAccountsWithoutDeposits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewAccountsWithoutDeposits.Size = new System.Drawing.Size(676, 174);
+            this.dataGridViewAccountsWithoutDeposits.Size = new System.Drawing.Size(507, 141);
             this.dataGridViewAccountsWithoutDeposits.TabIndex = 10;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(44, 22);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(33, 18);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 20);
+            this.label8.Size = new System.Drawing.Size(75, 16);
             this.label8.TabIndex = 9;
             this.label8.Text = "Accounts:";
             // 
             // buttonTransferToAnotherUser
             // 
             this.buttonTransferToAnotherUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonTransferToAnotherUser.Location = new System.Drawing.Point(341, 278);
-            this.buttonTransferToAnotherUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonTransferToAnotherUser.Location = new System.Drawing.Point(8, 206);
             this.buttonTransferToAnotherUser.Name = "buttonTransferToAnotherUser";
-            this.buttonTransferToAnotherUser.Size = new System.Drawing.Size(299, 28);
+            this.buttonTransferToAnotherUser.Size = new System.Drawing.Size(224, 23);
             this.buttonTransferToAnotherUser.TabIndex = 8;
             this.buttonTransferToAnotherUser.Text = "Transfer to another user\'s account";
             this.buttonTransferToAnotherUser.UseVisualStyleBackColor = true;
             this.buttonTransferToAnotherUser.Click += new System.EventHandler(this.buttonTransferToAnotherUser_Click);
             // 
-            // tabPage2
+            // tabPageCredits
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(957, 469);
-            this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPageCredits.Controls.Add(this.buttonMakePayment);
+            this.tabPageCredits.Controls.Add(this.buttonViewInfoAboutCredit);
+            this.tabPageCredits.Controls.Add(this.dataGridViewCredits);
+            this.tabPageCredits.Controls.Add(this.label9);
+            this.tabPageCredits.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCredits.Name = "tabPageCredits";
+            this.tabPageCredits.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCredits.Size = new System.Drawing.Size(716, 379);
+            this.tabPageCredits.TabIndex = 3;
+            this.tabPageCredits.Text = "Credits";
+            this.tabPageCredits.UseVisualStyleBackColor = true;
+            // 
+            // buttonMakePayment
+            // 
+            this.buttonMakePayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonMakePayment.Location = new System.Drawing.Point(336, 206);
+            this.buttonMakePayment.Name = "buttonMakePayment";
+            this.buttonMakePayment.Size = new System.Drawing.Size(177, 23);
+            this.buttonMakePayment.TabIndex = 12;
+            this.buttonMakePayment.Text = "To make a payment";
+            this.buttonMakePayment.UseVisualStyleBackColor = true;
+            // 
+            // buttonViewInfoAboutCredit
+            // 
+            this.buttonViewInfoAboutCredit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonViewInfoAboutCredit.Location = new System.Drawing.Point(11, 206);
+            this.buttonViewInfoAboutCredit.Name = "buttonViewInfoAboutCredit";
+            this.buttonViewInfoAboutCredit.Size = new System.Drawing.Size(177, 23);
+            this.buttonViewInfoAboutCredit.TabIndex = 11;
+            this.buttonViewInfoAboutCredit.Text = "View info about the credit";
+            this.buttonViewInfoAboutCredit.UseVisualStyleBackColor = true;
+            this.buttonViewInfoAboutCredit.Click += new System.EventHandler(this.buttonViewInfoAboutCredit_Click);
+            // 
+            // dataGridViewCredits
+            // 
+            this.dataGridViewCredits.AllowUserToAddRows = false;
+            this.dataGridViewCredits.AllowUserToDeleteRows = false;
+            this.dataGridViewCredits.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewCredits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCredits.Location = new System.Drawing.Point(6, 43);
+            this.dataGridViewCredits.MultiSelect = false;
+            this.dataGridViewCredits.Name = "dataGridViewCredits";
+            this.dataGridViewCredits.ReadOnly = true;
+            this.dataGridViewCredits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewCredits.Size = new System.Drawing.Size(507, 141);
+            this.dataGridViewCredits.TabIndex = 5;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(8, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(83, 16);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "My credits:";
             // 
             // UserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 498);
+            this.ClientSize = new System.Drawing.Size(724, 405);
             this.Controls.Add(this.tabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UserForm";
             this.Text = "User";
             this.Load += new System.EventHandler(this.UserForm_Load);
@@ -439,6 +465,9 @@
             this.tabPageMoneyTransfer.ResumeLayout(false);
             this.tabPageMoneyTransfer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAccountsWithoutDeposits)).EndInit();
+            this.tabPageCredits.ResumeLayout(false);
+            this.tabPageCredits.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCredits)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -472,6 +501,10 @@
         private System.Windows.Forms.DataGridView dataGridViewAccountsWithoutDeposits;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button buttonTransferToAnotherUser;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPageCredits;
+        private System.Windows.Forms.Button buttonMakePayment;
+        private System.Windows.Forms.Button buttonViewInfoAboutCredit;
+        private System.Windows.Forms.DataGridView dataGridViewCredits;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -33,26 +33,31 @@ namespace BankingSystem.BusinessLogic
             return recommendedSum;
         }
 
-        public static void PayForCredit(bank_account account, double sumForPay, credit credit)
+        public static bool PayForCredit(bank_account account, double sumForPay, credit credit)
         {
+            bool payment = false;
             if(account.Sum < sumForPay)
             {
                 MessageBox.Show("You do not have enough money to pay your credit! Please selet another account!");
-                return;
             }
             else if(sumForPay > credit.credit_type.Sum)
             {
                 MessageBox.Show("You enter sum which is more than credit sum! Please enter another sum!");
-                return;
             }
+            else
+            {
                 account.Sum -= sumForPay;
-                credit.Paid_sum += sumForPay;   
+                credit.Paid_sum += sumForPay;
+                MessageBox.Show("The payment is successfully completed!");
+                payment = true;
+            }
+            return payment;
         }
 
         public static double CalculateSumForEarlyPayment(credit credit)
         {
-            double sumForEarlyPayment = 0;
-            return sumForEarlyPayment = Convert.ToDouble(((credit.credit_type.Sum - credit.Paid_sum) * credit.credit_type.Interest_rate / 100) / 12 + (credit.credit_type.Sum - credit.Paid_sum));
+            var sumForEarlyPayment = ((credit.credit_type.Sum - credit.Paid_sum) * credit.credit_type.Interest_rate / 100) / 12 + (credit.credit_type.Sum - credit.Paid_sum);
+            return Convert.ToDouble(sumForEarlyPayment); 
         }
     }
 

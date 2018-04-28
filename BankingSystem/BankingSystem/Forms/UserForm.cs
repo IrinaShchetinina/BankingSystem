@@ -39,6 +39,15 @@ namespace BankingSystem.Forms
             dataGridViewAccounts.Columns[4].Visible = false;
             dataGridViewAccounts.Columns[5].Visible = false;
 
+            user.credit = userContext.GetCreditsToBindingList(user.Login);
+
+            dataGridViewCredits.DataSource = user.credit;
+            dataGridViewCredits.Columns[0].Visible = false;
+            dataGridViewCredits.Columns[1].Visible = false;
+            dataGridViewCredits.Columns[2].Visible = false;
+            dataGridViewCredits.Columns[6].Visible = false;
+            dataGridViewCredits.Columns[7].Visible = false;
+
             viewUserDeposits();
 
             BindingList<bank_account> blAccountsWithoutDeposits = new BindingList<bank_account>(user.bank_account.Where(a => a.bank_deposit == null).ToList());
@@ -229,6 +238,21 @@ namespace BankingSystem.Forms
         {
             transferMoney(true);
             dataGridViewAccountsWithoutDeposits.Refresh();
+        }
+
+        //credits!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        private void buttonViewInfoAboutCredit_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCredits.SelectedRows.Count > 0)
+            {
+                int selectedCreditId = Convert.ToInt32(dataGridViewCredits.SelectedRows[0].Cells[0].Value);
+                credit selectedCredit = user.credit.Where(c => c.id == selectedCreditId).FirstOrDefault();
+                InfoAboutCreditForm infoForm = new InfoAboutCreditForm(selectedCredit);
+                infoForm.Show();
+            }
+            else
+                MessageBox.Show("Credit is not selected!");
         }
     }
 }

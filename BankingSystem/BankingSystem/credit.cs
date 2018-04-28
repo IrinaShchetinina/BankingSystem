@@ -17,8 +17,8 @@ namespace BankingSystem
         public int id { get; set; }
         public string User_login { get; set; }
         public int Credit_type_id { get; set; }
-        public System.DateTime Opening_date { get; set; }
-        public System.DateTime Expiry_date { get; set; }
+        public DateTime Opening_date { get; set; }
+        public DateTime Expiry_date { get; set; }
         public Nullable<double> Paid_sum { get; set; }
     
         public virtual credit_type credit_type { get; set; }

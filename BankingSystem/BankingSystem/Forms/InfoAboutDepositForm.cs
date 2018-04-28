@@ -24,8 +24,8 @@ namespace BankingSystem.Forms
         {
             labelAccountNumber.Text = selectedDeposit.bank_account.Number.ToString();
             labelAccountSum.Text = selectedDeposit.bank_account.Sum.ToString();
-            labelOpeningDate.Text = selectedDeposit.Opening_date.ToString();
-            labelExpiryDate.Text = selectedDeposit.Expiry_date.ToString();
+            labelOpeningDate.Text = selectedDeposit.Opening_date.ToShortDateString().ToString();
+            labelExpiryDate.Text = selectedDeposit.Expiry_date.ToShortDateString().ToString();
             labelStartSum.Text = selectedDeposit.Start_sum.ToString();
             labelTerm.Text = selectedDeposit.deposite_type.Term.ToString();
             labelInterestRate.Text = selectedDeposit.deposite_type.Interest_rate.ToString();

@@ -54,10 +54,9 @@
             // 
             this.labelAccountSum.AutoSize = true;
             this.labelAccountSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelAccountSum.Location = new System.Drawing.Point(285, 95);
-            this.labelAccountSum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAccountSum.Location = new System.Drawing.Point(214, 77);
             this.labelAccountSum.Name = "labelAccountSum";
-            this.labelAccountSum.Size = new System.Drawing.Size(124, 20);
+            this.labelAccountSum.Size = new System.Drawing.Size(99, 16);
             this.labelAccountSum.TabIndex = 38;
             this.labelAccountSum.Text = "Account sum:";
             // 
@@ -65,10 +64,9 @@
             // 
             this.labelAccountNumber.AutoSize = true;
             this.labelAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelAccountNumber.Location = new System.Drawing.Point(285, 50);
-            this.labelAccountNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAccountNumber.Location = new System.Drawing.Point(214, 41);
             this.labelAccountNumber.Name = "labelAccountNumber";
-            this.labelAccountNumber.Size = new System.Drawing.Size(151, 20);
+            this.labelAccountNumber.Size = new System.Drawing.Size(122, 16);
             this.labelAccountNumber.TabIndex = 37;
             this.labelAccountNumber.Text = "Account number:";
             // 
@@ -76,21 +74,19 @@
             // 
             this.labelCapitalisation.AutoSize = true;
             this.labelCapitalisation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCapitalisation.Location = new System.Drawing.Point(285, 415);
-            this.labelCapitalisation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCapitalisation.Location = new System.Drawing.Point(214, 337);
             this.labelCapitalisation.Name = "labelCapitalisation";
-            this.labelCapitalisation.Size = new System.Drawing.Size(158, 20);
+            this.labelCapitalisation.Size = new System.Drawing.Size(103, 16);
             this.labelCapitalisation.TabIndex = 36;
-            this.labelCapitalisation.Text = "Passport number:";
+            this.labelCapitalisation.Text = "Capitalisation";
             // 
             // labelInterestRate
             // 
             this.labelInterestRate.AutoSize = true;
             this.labelInterestRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelInterestRate.Location = new System.Drawing.Point(285, 370);
-            this.labelInterestRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelInterestRate.Location = new System.Drawing.Point(214, 301);
             this.labelInterestRate.Name = "labelInterestRate";
-            this.labelInterestRate.Size = new System.Drawing.Size(112, 20);
+            this.labelInterestRate.Size = new System.Drawing.Size(90, 16);
             this.labelInterestRate.TabIndex = 35;
             this.labelInterestRate.Text = "Interest rate";
             // 
@@ -98,10 +94,9 @@
             // 
             this.labelTerm.AutoSize = true;
             this.labelTerm.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTerm.Location = new System.Drawing.Point(285, 324);
-            this.labelTerm.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTerm.Location = new System.Drawing.Point(214, 263);
             this.labelTerm.Name = "labelTerm";
-            this.labelTerm.Size = new System.Drawing.Size(127, 20);
+            this.labelTerm.Size = new System.Drawing.Size(103, 16);
             this.labelTerm.TabIndex = 34;
             this.labelTerm.Text = "Term(months)";
             // 
@@ -109,10 +104,9 @@
             // 
             this.labelExpiryDate.AutoSize = true;
             this.labelExpiryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelExpiryDate.Location = new System.Drawing.Point(285, 182);
-            this.labelExpiryDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelExpiryDate.Location = new System.Drawing.Point(214, 148);
             this.labelExpiryDate.Name = "labelExpiryDate";
-            this.labelExpiryDate.Size = new System.Drawing.Size(103, 20);
+            this.labelExpiryDate.Size = new System.Drawing.Size(86, 16);
             this.labelExpiryDate.TabIndex = 33;
             this.labelExpiryDate.Text = "Expiry date";
             // 
@@ -120,10 +114,9 @@
             // 
             this.labelOpeningDate.AutoSize = true;
             this.labelOpeningDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelOpeningDate.Location = new System.Drawing.Point(285, 139);
-            this.labelOpeningDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelOpeningDate.Location = new System.Drawing.Point(214, 113);
             this.labelOpeningDate.Name = "labelOpeningDate";
-            this.labelOpeningDate.Size = new System.Drawing.Size(120, 20);
+            this.labelOpeningDate.Size = new System.Drawing.Size(101, 16);
             this.labelOpeningDate.TabIndex = 32;
             this.labelOpeningDate.Text = "Opening date";
             // 
@@ -131,10 +124,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(299, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(224, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 24);
+            this.label1.Size = new System.Drawing.Size(143, 18);
             this.label1.TabIndex = 31;
             this.label1.Text = "Info about deposit";
             // 
@@ -142,10 +134,9 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(12, 95);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Location = new System.Drawing.Point(9, 77);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(124, 20);
+            this.label12.Size = new System.Drawing.Size(99, 16);
             this.label12.TabIndex = 30;
             this.label12.Text = "Account sum:";
             // 
@@ -153,10 +144,9 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(12, 50);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Location = new System.Drawing.Point(9, 41);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(151, 20);
+            this.label11.Size = new System.Drawing.Size(122, 16);
             this.label11.TabIndex = 29;
             this.label11.Text = "Account number:";
             // 
@@ -164,10 +154,9 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(12, 415);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Location = new System.Drawing.Point(9, 337);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(130, 20);
+            this.label10.Size = new System.Drawing.Size(107, 16);
             this.label10.TabIndex = 28;
             this.label10.Text = "Capitalisation:";
             // 
@@ -175,10 +164,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(12, 370);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(9, 301);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(148, 20);
+            this.label9.Size = new System.Drawing.Size(117, 16);
             this.label9.TabIndex = 27;
             this.label9.Text = "Interest rate(%):";
             // 
@@ -186,10 +174,9 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(12, 324);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(9, 263);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(139, 20);
+            this.label8.Size = new System.Drawing.Size(111, 16);
             this.label8.TabIndex = 26;
             this.label8.Text = "Term (months):";
             // 
@@ -197,10 +184,9 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(12, 182);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(9, 148);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(109, 20);
+            this.label7.Size = new System.Drawing.Size(90, 16);
             this.label7.TabIndex = 25;
             this.label7.Text = "Expiry date:";
             // 
@@ -208,10 +194,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(12, 139);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(9, 113);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 20);
+            this.label6.Size = new System.Drawing.Size(105, 16);
             this.label6.TabIndex = 24;
             this.label6.Text = "Opening date:";
             // 
@@ -219,10 +204,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(269, 276);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(202, 224);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(221, 24);
+            this.label2.Size = new System.Drawing.Size(179, 18);
             this.label2.TabIndex = 39;
             this.label2.Text = "Info about deposit type";
             // 
@@ -230,10 +214,9 @@
             // 
             this.labelEarlyClosure.AutoSize = true;
             this.labelEarlyClosure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelEarlyClosure.Location = new System.Drawing.Point(285, 455);
-            this.labelEarlyClosure.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEarlyClosure.Location = new System.Drawing.Point(214, 370);
             this.labelEarlyClosure.Name = "labelEarlyClosure";
-            this.labelEarlyClosure.Size = new System.Drawing.Size(120, 20);
+            this.labelEarlyClosure.Size = new System.Drawing.Size(99, 16);
             this.labelEarlyClosure.TabIndex = 41;
             this.labelEarlyClosure.Text = "Early closure";
             // 
@@ -241,10 +224,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 455);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(9, 370);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 20);
+            this.label4.Size = new System.Drawing.Size(103, 16);
             this.label4.TabIndex = 40;
             this.label4.Text = "Early closure:";
             // 
@@ -252,10 +234,9 @@
             // 
             this.labelStartSum.AutoSize = true;
             this.labelStartSum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelStartSum.Location = new System.Drawing.Point(285, 225);
-            this.labelStartSum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStartSum.Location = new System.Drawing.Point(214, 183);
             this.labelStartSum.Name = "labelStartSum";
-            this.labelStartSum.Size = new System.Drawing.Size(97, 20);
+            this.labelStartSum.Size = new System.Drawing.Size(76, 16);
             this.labelStartSum.TabIndex = 43;
             this.labelStartSum.Text = "Start sum:";
             // 
@@ -263,18 +244,17 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 225);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(9, 183);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 20);
+            this.label5.Size = new System.Drawing.Size(76, 16);
             this.label5.TabIndex = 42;
             this.label5.Text = "Start sum:";
             // 
             // InfoAboutDepositForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 506);
+            this.ClientSize = new System.Drawing.Size(591, 411);
             this.Controls.Add(this.labelStartSum);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.labelEarlyClosure);
@@ -296,7 +276,6 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "InfoAboutDepositForm";
             this.Text = "InfoAboutDeposit";
             this.Load += new System.EventHandler(this.InfoAboutDepositForm_Load);
