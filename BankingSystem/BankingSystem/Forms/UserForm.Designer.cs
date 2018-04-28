@@ -409,6 +409,7 @@
             this.buttonMakePayment.TabIndex = 12;
             this.buttonMakePayment.Text = "To make a payment";
             this.buttonMakePayment.UseVisualStyleBackColor = true;
+            this.buttonMakePayment.Click += new System.EventHandler(this.buttonMakePayment_Click);
             // 
             // buttonViewInfoAboutCredit
             // 

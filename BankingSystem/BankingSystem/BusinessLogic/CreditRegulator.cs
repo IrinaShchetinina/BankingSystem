@@ -13,19 +13,12 @@ namespace BankingSystem.BusinessLogic
         public static double CalculateRecommendedSumOfPayment(credit credit) // рекомендуемая сумма платежа
         {
             double recommendedSum = 0;
-            int mouths = calculateCreditMouths(credit);
+            int mouths = calculateCreditMouths(credit, false);
             double monthPayment = credit.credit_type.Sum / mouths; // ежемесяный платеж без учта процентов
-
-            if (credit.Paid_sum == 0)
-            {
-                recommendedSum = (credit.credit_type.Sum * credit.credit_type.Interest_rate / 100) / 12 + monthPayment;
-            }
-            else
-            {
-                var newDebtSum = credit.credit_type.Sum - credit.Paid_sum;
-                recommendedSum = Convert.ToDouble((newDebtSum * credit.credit_type.Interest_rate / 100) / 12 + monthPayment);
-            }
-            return recommendedSum;
+            
+            recommendedSum = Convert.ToDouble(((credit.credit_type.Sum - credit.Paid_sum) * credit.credit_type.Interest_rate / 100) / 12 + monthPayment);
+      
+            return Math.Round(recommendedSum, 1);
         }
 
         public static bool PayForCredit(bank_account account, double sumForPay, credit credit)
@@ -62,7 +55,8 @@ namespace BankingSystem.BusinessLogic
             idealCredit.credit_type = credit.credit_type;
             idealCredit.Opening_date = credit.Opening_date;
             idealCredit.Expiry_date = credit.Expiry_date;
-            int mouths = calculateCreditMouths(credit); //сколько месяцев прошло с момента открытия
+            idealCredit.Paid_sum = 0;
+            int mouths = calculateCreditMouths(credit, true); //сколько месяцев прошло с момента открытия
 
             for (int mouth = 1; mouth <= mouths; mouth++) //считаем сколько должно быть заплачено
             {
@@ -72,16 +66,23 @@ namespace BankingSystem.BusinessLogic
             {
                 debt = Convert.ToDouble(idealCredit.Paid_sum - credit.Paid_sum);
                 credit.Paid_sum -= (debt / 100) * 5; //штраф за просрочку списывается с paid sum в размере 5 прицентов от суммы долга
+                if (credit.Paid_sum < 0)
+                    debt -= Convert.ToDouble(credit.Paid_sum); 
             }
 
-            return debt;
+            return Math.Round(debt, 1);
         }
 
-        private static int calculateCreditMouths(credit credit)
+        private static int calculateCreditMouths(credit credit, bool now)
         {
             int mouths = 0;
             DateTime tmp = credit.Opening_date;
-            while (tmp < DateTime.Now.Date)
+            DateTime end;
+            if (now)
+                end = DateTime.Now.Date;
+            else
+                end = credit.Expiry_date;
+            while (tmp < end)
             {
                 mouths++;
                 tmp = tmp.AddMonths(1);

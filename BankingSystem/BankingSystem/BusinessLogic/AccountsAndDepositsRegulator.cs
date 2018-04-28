@@ -56,7 +56,7 @@ namespace BankingSystem.BusinessLogic
             return false;
         }
 
-        internal static bank_account OpenDeposite(deposite_type depositeType, bank_account accountFrom, int sum)
+        internal static bank_account OpenDeposite(deposite_type depositeType, bank_account accountFrom, double sum)
         {
             if(accountFrom.bank_deposit == null)
             {

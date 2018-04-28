@@ -32,7 +32,7 @@ namespace BankingSystem.Forms
             labelPassNum.Text = user.data_of_user.Passport_number;
 
             user.bank_account = userContext.GetBankAccountsToBindingList(user.Login);
-            
+
             dataGridViewAccounts.DataSource = user.bank_account;
             dataGridViewAccounts.Columns[0].Visible = false;
             dataGridViewAccounts.Columns[2].Visible = false;
@@ -58,7 +58,7 @@ namespace BankingSystem.Forms
             dataGridViewAccountsWithoutDeposits.Columns[5].Visible = false;
 
             List<bank_deposit> userDeposits = user.bank_account.Where(a => a.bank_deposit != null).Select(d => d.bank_deposit).ToList();
-            foreach(bank_deposit deposit in userDeposits)
+            foreach (bank_deposit deposit in userDeposits)
             {
                 if (AccountsAndDepositsRegulator.InterestAccrual(deposit))
                 {
@@ -114,12 +114,8 @@ namespace BankingSystem.Forms
 
         private void transferMoney(bool toAnotherUser)
         {
-            object[] accounts;
+            object[] accounts = user.bank_account.Where(a => a.bank_deposit == null).Select(a => a.Number).ToArray();
 
-            if (toAnotherUser)
-                accounts = user.bank_account.Where(a => a.bank_deposit == null).Select(a => a.Number).ToArray();
-            else 
-                accounts = user.bank_account.Select(a => a.Number).ToArray();
             MoneyTransferForm transferForm = new MoneyTransferForm(accounts, toAnotherUser);
             if (transferForm.ShowDialog() == DialogResult.OK)
             {
@@ -134,7 +130,7 @@ namespace BankingSystem.Forms
 
                 if (numberAccountFrom != null && numberAccountTo != null)
                 {
-                    if (transferForm.textBoxSum != null && int.TryParse(transferForm.textBoxSum.Text, out sum))
+                    if (transferForm.textBoxSum.Text != "" && int.TryParse(transferForm.textBoxSum.Text, out sum))
                     {
                         bank_account accountFrom = user.bank_account.Where(a => a.Number == numberAccountFrom).First();
                         bank_account accountTo;
@@ -142,7 +138,7 @@ namespace BankingSystem.Forms
                             accountTo = userContext.GetBankAccountsToList().Where(a => a.Number == numberAccountTo).FirstOrDefault();
                         else
                             accountTo = user.bank_account.Where(a => a.Number == numberAccountTo).FirstOrDefault();
-                        if(accountTo != null)
+                        if (accountTo != null)
                         {
                             if (AccountsAndDepositsRegulator.TransferMoney(accountFrom, accountTo, sum))
                             {
@@ -157,7 +153,7 @@ namespace BankingSystem.Forms
                             else
                                 MessageBox.Show("The account is not selected!");
                         }
-                            
+
                     }
                     else
                         MessageBox.Show("The sum entered is not correct!");
@@ -171,13 +167,14 @@ namespace BankingSystem.Forms
         {
             BindingList<deposite_type> types = userContext.GetDepositTypesToBindingList();
             TypesOfDepositsForm typesFotm = new TypesOfDepositsForm(types, user.bank_account.Select(a => a.Number).ToArray());
-            if(typesFotm.ShowDialog() == DialogResult.OK)
+            if (typesFotm.ShowDialog() == DialogResult.OK)
             {
-                int sum;
-                if (typesFotm.textBoxSum != null && int.TryParse(typesFotm.textBoxSum.Text, out sum))
+                double sum;
+                if (typesFotm.textBoxSum != null && double.TryParse(typesFotm.textBoxSum.Text, out sum))
                 {
+                    sum = Math.Round(sum, 1);
                     string numberAccountFrom = typesFotm.comboBoxFrom.Text;
-                    if (numberAccountFrom != null)
+                    if (numberAccountFrom != "")
                     {
                         bank_account accountFrom = user.bank_account.Where(a => a.Number == numberAccountFrom).First();
                         int depositTypeId = Convert.ToInt32(typesFotm.dataGridViewTypesOfDeposits.SelectedRows[0].Cells[0].Value);
@@ -190,7 +187,7 @@ namespace BankingSystem.Forms
                             userContext.UpdateUser(user);
                             viewUserDeposits();
                             MessageBox.Show("Deposit is opened!");
-                        }   
+                        }
                     }
                     else
                         MessageBox.Show("The account is not selected!");
@@ -206,7 +203,7 @@ namespace BankingSystem.Forms
             {
                 int selectedDepositAccountId = Convert.ToInt32(dataGridViewDeposits.SelectedRows[0].Cells[0].Value);
                 bank_deposit closingDeposit = userContext.FindDepositeByAccountId(selectedDepositAccountId);
-                if(AccountsAndDepositsRegulator.CloseDepositCheck(closingDeposit))
+                if (AccountsAndDepositsRegulator.CloseDepositCheck(closingDeposit))
                 {
                     userContext.DeleteBankDeposit(closingDeposit);
                     userContext.UpdateUser(user);
@@ -253,6 +250,45 @@ namespace BankingSystem.Forms
             }
             else
                 MessageBox.Show("Credit is not selected!");
+        }
+
+        private void buttonMakePayment_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewCredits.SelectedRows.Count > 0)
+            {
+                object[] accounts = user.bank_account.Where(a => a.bank_deposit == null).Select(a => a.Number).ToArray();
+                int selectedCreditId = Convert.ToInt32(dataGridViewCredits.SelectedRows[0].Cells[0].Value);
+                credit selectedCredit = user.credit.Where(c => c.id == selectedCreditId).FirstOrDefault();
+                double debt = CreditRegulator.СalculateDebt(selectedCredit);
+                double recommendedPay = CreditRegulator.CalculateRecommendedSumOfPayment(selectedCredit) + debt;
+                double fullyRepaySum = CreditRegulator.CalculateSumForEarlyPayment(selectedCredit);
+
+                CreditPayForm payForm = new CreditPayForm(accounts, debt, recommendedPay, fullyRepaySum);
+                if (payForm.ShowDialog() == DialogResult.OK)
+                {
+                    string numberAccountFrom = payForm.comboBoxFrom.Text;
+                    if (numberAccountFrom != "")
+                    {
+                        double sum;
+                        if (payForm.textBoxSum != null && double.TryParse(payForm.textBoxSum.Text, out sum))
+                        {
+                            sum = Math.Round(sum, 1);
+                            bank_account accountFrom = user.bank_account.Where(a => a.Number == numberAccountFrom).First();
+                            if (CreditRegulator.PayForCredit(accountFrom, sum, selectedCredit))
+                            {
+                                userContext.UpdateUser(user);
+                                dataGridViewCredits.Refresh();
+                            }
+                        }
+                        else
+                            MessageBox.Show("The sum entered is not correct!");
+                    }
+                    else
+                        MessageBox.Show("The account is not selected!");
+                }
+                else
+                    MessageBox.Show("Credit is not selected!");
+            }
         }
     }
 }
