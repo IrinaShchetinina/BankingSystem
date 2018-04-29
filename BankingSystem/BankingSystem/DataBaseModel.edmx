@@ -33,6 +33,7 @@
           <Property Name="Credit_type_id" Type="int" Nullable="false" />
           <Property Name="Opening_date" Type="date" Nullable="false" />
           <Property Name="Expiry_date" Type="date" Nullable="false" />
+          <Property Name="LastPenalty" Type="date" />
           <Property Name="Paid_sum" Type="double" />
         </EntityType>
         <EntityType Name="credit_type">
@@ -226,6 +227,7 @@
           <Property Name="Credit_type_id" Type="Int32" Nullable="false" />
           <Property Name="Opening_date" Type="DateTime" Nullable="false" />
           <Property Name="Expiry_date" Type="DateTime" Nullable="false" />
+          <Property Name="LastPenalty" Type="DateTime" />
           <Property Name="Paid_sum" Type="Double" />
           <NavigationProperty Name="credit_type" Relationship="Self.fk_credit_type_id" FromRole="credit" ToRole="credit_type" />
           <NavigationProperty Name="user" Relationship="Self.fk_us_login" FromRole="credit" ToRole="user" />
@@ -425,6 +427,7 @@
                 <ScalarProperty Name="Credit_type_id" ColumnName="Credit_type_id" />
                 <ScalarProperty Name="Opening_date" ColumnName="Opening_date" />
                 <ScalarProperty Name="Expiry_date" ColumnName="Expiry_date" />
+                <ScalarProperty Name="LastPenalty" ColumnName="LastPenalty" />
                 <ScalarProperty Name="Paid_sum" ColumnName="Paid_sum" />
               </MappingFragment>
             </EntityTypeMapping>

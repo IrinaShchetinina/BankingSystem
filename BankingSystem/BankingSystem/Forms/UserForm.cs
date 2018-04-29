@@ -40,13 +40,22 @@ namespace BankingSystem.Forms
             dataGridViewAccounts.Columns[5].Visible = false;
 
             user.credit = userContext.GetCreditsToBindingList(user.Login);
+            foreach(credit credit in user.credit)
+            {
+                double debt = CreditRegulator.СalculateDebt(credit);
+                if ((debt > 0) && CreditRegulator.CheckImpositionOfFine(credit))
+                {
+                    MessageBox.Show("You are in arrears on the loan! You are fined in the amount of " + CreditRegulator.ImposeAFine(credit, debt).ToString());
+                    userContext.UpdateUser(user);
+                }
+            }
 
             dataGridViewCredits.DataSource = user.credit;
             dataGridViewCredits.Columns[0].Visible = false;
             dataGridViewCredits.Columns[1].Visible = false;
             dataGridViewCredits.Columns[2].Visible = false;
-            dataGridViewCredits.Columns[6].Visible = false;
             dataGridViewCredits.Columns[7].Visible = false;
+            dataGridViewCredits.Columns[8].Visible = false;
 
             viewUserDeposits();
 

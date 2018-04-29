@@ -65,12 +65,30 @@ namespace BankingSystem.BusinessLogic
             if(credit.Paid_sum < idealCredit.Paid_sum)
             {
                 debt = Convert.ToDouble(idealCredit.Paid_sum - credit.Paid_sum);
-                credit.Paid_sum -= (debt / 100) * 5; //штраф за просрочку списывается с paid sum в размере 5 прицентов от суммы долга
-                if (credit.Paid_sum < 0)
-                    debt -= Convert.ToDouble(credit.Paid_sum); 
             }
 
             return Math.Round(debt, 1);
+        }
+
+        public static bool CheckImpositionOfFine(credit credit)
+        {
+            if ((credit.LastPenalty.Value.Month.CompareTo(DateTime.Now.Month) == 0) &&(credit.LastPenalty.Value.Year.CompareTo(DateTime.Now.Year) == 0))//в этом месяце штраф уже наложен
+                return false;
+            return true;
+        }
+
+        public static double ImposeAFine(credit credit, double debt)
+        {
+            double fine = 0;
+
+            if(debt > 0)
+            {
+                fine = (debt / 100) * 5;
+                credit.Paid_sum -= (debt / 100) * 5; //штраф за просрочку списывается с paid sum в размере 5 процентов от суммы долга
+                credit.LastPenalty = DateTime.Now;
+            }
+
+            return Math.Round(fine, 1);
         }
 
         private static int calculateCreditMouths(credit credit, bool now)
