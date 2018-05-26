@@ -45,7 +45,8 @@ namespace BankingSystem.BusinessLogic
         public static double CalculateSumForEarlyPayment(credit credit)
         {
             var sumForEarlyPayment = ((credit.credit_type.Sum - credit.Paid_sum) * credit.credit_type.Interest_rate / 100) / 12 + (credit.credit_type.Sum - credit.Paid_sum);
-            return Convert.ToDouble(sumForEarlyPayment); 
+            double result = Math.Round(Convert.ToDouble(sumForEarlyPayment), 1);
+            return result; 
         }
 
         public static double СalculateDebt(credit credit) 
